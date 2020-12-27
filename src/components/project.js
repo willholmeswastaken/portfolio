@@ -87,7 +87,7 @@ const Project = ({ project }) => {
                         <SocialIcon url={source} />
                     )}
                     {status && status.length > 0 && (
-                        <StyledLiveLink href={demo} target="_blank">
+                        <StyledLiveLink href={demo} target="_blank" rel="noopener">
                             {status}
                         </StyledLiveLink>
                     )}
