@@ -80,7 +80,7 @@ const Project = ({ project }) => {
         <Fade triggerOnce>
             <StyledProjectCard>
                 <Header>{title}</Header>
-                <Wrapper>{tech.map(t => <Icon src={`/${t}.svg`} />)}</Wrapper>
+                <Wrapper>{tech.map(t => <Icon alt={`${t}`} src={`/${t}.svg`} />)}</Wrapper>
                 <StyledDescription>{description}</StyledDescription>
                 <Wrapper>
                     {source && source.length > 0 && (
