@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Hero from "../components/hero"
 import Layout from "../components/layout"
 import Projects from "../components/projects"
+import SEO from "../components/seo"
 
 export const pageQuery = graphql`
   {
