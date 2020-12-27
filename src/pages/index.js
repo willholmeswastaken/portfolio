@@ -42,7 +42,7 @@ export const pageQuery = graphql`
 const IndexPage = ({ data }) => (
   <Fade triggerOnce>
     <Layout>
-      <SEO title="hello@willholmes.dev" />
+      <SEO title="Home" />
       <Hero content={data.hero.edges[0].node} />
       <Projects projectsData={data.projects.edges.map(project => { return { ...project.node } })} />
     </Layout>
