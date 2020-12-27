@@ -19,7 +19,7 @@
         "title": "Exchange Rates Service",
         "description": "A service to provide the latest information for exchange rates",
         "tech": [ "nodejs", "typescript"],
-        "status": "",
+        "status": "IN DEV",
         "source": "https://github.com/willholmeswastaken/exchange-rates-service",
         "demo": ""
     },
