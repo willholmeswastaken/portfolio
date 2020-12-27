@@ -19,7 +19,7 @@
         "title": "Exchange Rates Service",
         "description": "A service to provide the latest information for exchange rates",
         "tech": "NodeJs, Typescript",
-        "status": "Demo",
+        "status": "",
         "source": "https://github.com/willholmeswastaken/exchange-rates-service",
         "demo": ""
     },
@@ -27,32 +27,32 @@
         "title": "Budgeter User Service",
         "description": "A service to provide the latest information to display a users budget summary.",
         "tech": "NodeJs, Typescript",
-        "status": "In DEV",
-        "source": "",
+        "status": "IN DEV",
+        "source": "https://github.com/willholmeswastaken/budgeter-profile-service",
         "demo": ""
     },
     {
         "title": "Budgeter",
         "description": "An app to help people budget their money through helpful suggestions & insights.",
         "tech": "React",
-        "status": "In DEV",
-        "source": "",
+        "status": "IN DEV",
+        "source": "https://github.com/willholmeswastaken/budgeter-frontend",
         "demo": ""
     },
     {
         "title": "Bye Console Logs",
         "description": "VS Code extension to remove any occurences of console.log for those debugging times.",
         "tech": "JS",
-        "status": "Demo",
+        "status": "View",
         "source": "https://github.com/willholmeswastaken/bye-console-logs",
-        "demo": ""
+        "demo": "https://marketplace.visualstudio.com/items?itemName=WillHolmes.bye-console-logs"
     },
     {
         "title": "Meaningful",
         "description": "A Visual Studio Code extension to lookup any highlighted text in your IDE.",
         "tech": "JS",
-        "status": "Demo",
+        "status": "View",
         "source": "https://github.com/willholmeswastaken/Meaningful",
-        "demo": ""
+        "demo": "https://marketplace.visualstudio.com/items?itemName=WillHolmes.meaningful"
     }
 ]
