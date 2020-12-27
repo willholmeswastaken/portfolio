@@ -1,0 +1,58 @@
+[
+    {
+        "title": "XChangeRates",
+        "description": "A web app to check the latest exchange rate values.",
+        "tech": "React, Redux",
+        "status": "IN DEV",
+        "source": "https://github.com/willholmeswastaken/xchngrates",
+        "demo": "https://xchngrates.netlify.app/"
+    },
+    {
+        "title": "NpmGUI",
+        "description": "A web app to browse the NPM catalog for packages.",
+        "tech": "React, Redux",
+        "status": "Demo",
+        "source": "https://github.com/willholmeswastaken/NpmGui",
+        "demo": "https://npmgui.netlify.app/"
+    },
+    {
+        "title": "Exchange Rates Service",
+        "description": "A service to provide the latest information for exchange rates",
+        "tech": "NodeJs, Typescript",
+        "status": "Demo",
+        "source": "https://github.com/willholmeswastaken/exchange-rates-service",
+        "demo": ""
+    },
+    {
+        "title": "Budgeter User Service",
+        "description": "A service to provide the latest information to display a users budget summary.",
+        "tech": "NodeJs, Typescript",
+        "status": "In DEV",
+        "source": "",
+        "demo": ""
+    },
+    {
+        "title": "Budgeter",
+        "description": "An app to help people budget their money through helpful suggestions & insights.",
+        "tech": "React",
+        "status": "In DEV",
+        "source": "",
+        "demo": ""
+    },
+    {
+        "title": "Bye Console Logs",
+        "description": "VS Code extension to remove any occurences of console.log for those debugging times.",
+        "tech": "JS",
+        "status": "Demo",
+        "source": "https://github.com/willholmeswastaken/bye-console-logs",
+        "demo": ""
+    },
+    {
+        "title": "Meaningful",
+        "description": "A Visual Studio Code extension to lookup any highlighted text in your IDE.",
+        "tech": "JS",
+        "status": "Demo",
+        "source": "https://github.com/willholmeswastaken/Meaningful",
+        "demo": ""
+    }
+]
