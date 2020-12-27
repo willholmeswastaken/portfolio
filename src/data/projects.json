@@ -40,6 +40,14 @@
         "demo": ""
     },
     {
+        "title": "WeatherData",
+        "description": "A NuGet package to allow C# developers to get weather information by location.",
+        "tech": [ "csharp", "netcore"],
+        "status": "View",
+        "source": "https://github.com/willholmeswastaken/WeatherData",
+        "demo": "https://www.nuget.org/packages/WeatherData.NET"
+    },
+    {
         "title": "Bye Console Logs",
         "description": "VS Code extension to remove any occurences of console.log for those debugging times.",
         "tech": [ "js" ],
@@ -54,13 +62,5 @@
         "status": "View",
         "source": "https://github.com/willholmeswastaken/Meaningful",
         "demo": "https://marketplace.visualstudio.com/items?itemName=WillHolmes.meaningful"
-    },
-    {
-        "title": "WeatherData",
-        "description": "A NuGet package to allow C# developers to get weather information by location.",
-        "tech": [ "csharp", "netcore"],
-        "status": "View",
-        "source": "https://github.com/willholmeswastaken/WeatherData",
-        "demo": "https://www.nuget.org/packages/WeatherData.NET"
     }
 ]
