@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Fade } from "react-awesome-reveal";
+import { SocialIcon } from 'react-social-icons';
 
 import { shadow } from '../styles/utils/shadow.js';
-import { SocialIcon } from 'react-social-icons';
 import Icon from './icon.js';
 
 const StyledProjectCard = styled.div`
   max-width: 300px;
-  height: 340px;
+  height: 350px;
   background: white;
   margin: 25px;
   border-radius: 2px;
+  padding-top:5px;
   ${shadow};
   > h2 {
     padding: 15px;
@@ -72,25 +74,26 @@ const Header = styled.h3`
   text-align: center;
   `;
 
-const Project = ({ project, children }) => {
-    console.log(project)
+const Project = ({ project }) => {
     const { title, description, status, source, demo, tech } = project
     return (
-        <StyledProjectCard>
-            <Header>{title}</Header>
-            <Wrapper>{tech.map(t => <Icon src={`/${t}.svg`} />)}</Wrapper>
-            <StyledDescription>{description}</StyledDescription>
-            <Wrapper>
-                {source && source.length > 0 && (
-                    <SocialIcon url={source} />
-                )}
-                {status && status.length > 0 && (
-                    <StyledLiveLink href={demo} target="_blank">
-                        {status}
-                    </StyledLiveLink>
-                )}
-            </Wrapper>
-        </StyledProjectCard>
+        <Fade triggerOnce>
+            <StyledProjectCard>
+                <Header>{title}</Header>
+                <Wrapper>{tech.map(t => <Icon src={`/${t}.svg`} />)}</Wrapper>
+                <StyledDescription>{description}</StyledDescription>
+                <Wrapper>
+                    {source && source.length > 0 && (
+                        <SocialIcon url={source} />
+                    )}
+                    {status && status.length > 0 && (
+                        <StyledLiveLink href={demo} target="_blank">
+                            {status}
+                        </StyledLiveLink>
+                    )}
+                </Wrapper>
+            </StyledProjectCard>
+        </Fade>
     );
 };
 

@@ -25,7 +25,9 @@ const Footer = () => (
       rel="nofollow noopener noreferrer"
       aria-label="External Link"
     >
-      <span role="img" aria-label="emoji">👏</span> Visit on GitHub
+      Made with <span role="img" aria-label="emoji">❤️</span> by Will Holmes <br />
+      Built on GatsbyJs. <br />
+      <span role="img" aria-label="emoji">👏</span> Visit my GitHub
     </a>
   </StyledFooter>
 )

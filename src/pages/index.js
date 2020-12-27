@@ -1,5 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Fade } from "react-awesome-reveal";
+
 import Hero from "../components/hero"
 import Layout from "../components/layout"
 import Projects from "../components/projects"
@@ -38,11 +40,13 @@ export const pageQuery = graphql`
 `
 
 const IndexPage = ({ data }) => (
-  <Layout>
-    <SEO title="hello@willholmes.dev" />
-    <Hero content={data.hero.edges[0].node} />
-    <Projects projectsData={data.projects.edges.map(project => { return { ...project.node } })} />
-  </Layout>
+  <Fade triggerOnce>
+    <Layout>
+      <SEO title="hello@willholmes.dev" />
+      <Hero content={data.hero.edges[0].node} />
+      <Projects projectsData={data.projects.edges.map(project => { return { ...project.node } })} />
+    </Layout>
+  </Fade> 
 )
 
 export default IndexPage
