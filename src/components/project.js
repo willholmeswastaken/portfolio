@@ -3,19 +3,19 @@ import styled from 'styled-components';
 
 import { shadow } from '../styles/utils/shadow.js';
 import { SocialIcon } from 'react-social-icons';
+import Icon from './icon.js';
 
 const StyledProjectCard = styled.div`
   max-width: 300px;
-  height: 300px;
+  height: 340px;
   background: white;
-  margin: auto;
+  margin: 25px;
   border-radius: 2px;
   ${shadow};
   > h2 {
     padding: 15px;
   }
-  margin-bottom: 20px;
-  margin-left:5px;
+  margin-left:8px;
   transition: all .2s ease-in-out;
   &:hover {
     cursor: pointer;
@@ -24,7 +24,8 @@ const StyledProjectCard = styled.div`
 `;
 
 const StyledDescription = styled.p`
-  padding: 15px;
+  padding: 10px;
+  padding-bottom:0px;
   color: #555;
   text-align: center;
 `;
@@ -73,11 +74,11 @@ const Header = styled.h3`
 
 const Project = ({ project, children }) => {
     console.log(project)
-    const { title, description, status, source, demo } = project
+    const { title, description, status, source, demo, tech } = project
     return (
         <StyledProjectCard>
             <Header>{title}</Header>
-            <Wrapper>{children}</Wrapper>
+            <Wrapper>{tech.map(t => <Icon src={`/${t}.svg`} />)}</Wrapper>
             <StyledDescription>{description}</StyledDescription>
             <Wrapper>
                 {source && source.length > 0 && (

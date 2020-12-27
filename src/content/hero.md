@@ -7,4 +7,4 @@ subtitleHighlight: "beautiful user experiences and sophisticated backend service
 subtleSuffix: " for the web."
 ---
 
-Full Stack Web Developer.
+Full stack web developer based out of the UK.
