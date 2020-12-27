@@ -26,6 +26,7 @@ const Icon = props => (
             width={props.width}
             clickable={props.clickable}
             onClick={props.clicked}
+            alt={props.alt}
         />
         :
         <StyledIcon
@@ -35,6 +36,7 @@ const Icon = props => (
             width={props.width}
             clickable={props.clickable}
             onClick={props.clicked}
+            alt={props.alt}
         />
 )
 
