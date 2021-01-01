@@ -15,7 +15,7 @@ const Socials = () => (
     <h2>Socials</h2>
     <StyledSocials>
       <>
-        <a href="https://dev.to/willholmeswastaken">
+        <a href="https://dev.to/willholmes">
           <Icon alt="blog" src="/dev-to.svg" />
         </a>
       </>
