@@ -1,5 +1,5 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
   width: 100%;
@@ -15,7 +15,7 @@ const StyledFooter = styled.footer`
   text-transform: uppercase;
   letter-spacing: +1px;
   font-weight: 700;
-`
+`;
 
 const Footer = () => (
   <StyledFooter>
@@ -25,11 +25,21 @@ const Footer = () => (
       rel="nofollow noopener noreferrer"
       aria-label="External Link"
     >
-      Made with <span role="img" aria-label="emoji">❤️</span> by Will Holmes <br />
-      Built on GatsbyJs. <br />
-      <span role="img" aria-label="emoji">👏</span> Visit my GitHub
+      Made with
+      {' '}
+      <span role="img" aria-label="emoji">❤️</span>
+      {' '}
+      by Will Holmes
+      {' '}
+      <br />
+      Built on GatsbyJs.
+      {' '}
+      <br />
+      <span role="img" aria-label="emoji">👏</span>
+      {' '}
+      Visit my GitHub
     </a>
   </StyledFooter>
-)
+);
 
-export default Footer
+export default Footer;

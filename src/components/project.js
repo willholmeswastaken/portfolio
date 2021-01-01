@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Fade } from "react-awesome-reveal";
+import { Fade } from 'react-awesome-reveal';
 import { SocialIcon } from 'react-social-icons';
 
-import { shadow } from '../styles/utils/shadow.js';
-import Icon from './icon.js';
+import shadow from '../styles/utils/shadow';
+import Icon from './icon';
 
 const StyledProjectCard = styled.div`
   max-width: 300px;
@@ -75,26 +75,28 @@ const Header = styled.h3`
   `;
 
 const Project = ({ project }) => {
-    const { title, description, status, source, demo, tech } = project
-    return (
-        <Fade triggerOnce>
-            <StyledProjectCard>
-                <Header>{title}</Header>
-                <Wrapper>{tech.map(t => <Icon alt={`${t}`} src={`/${t}.svg`} />)}</Wrapper>
-                <StyledDescription>{description}</StyledDescription>
-                <Wrapper>
-                    {source && source.length > 0 && (
-                        <SocialIcon url={source} />
-                    )}
-                    {status && status.length > 0 && (
-                        <StyledLiveLink href={demo} target="_blank" rel="noopener">
-                            {status}
-                        </StyledLiveLink>
-                    )}
-                </Wrapper>
-            </StyledProjectCard>
-        </Fade>
-    );
+  const {
+    title, description, status, source, demo, tech,
+  } = project;
+  return (
+    <Fade triggerOnce>
+      <StyledProjectCard>
+        <Header>{title}</Header>
+        <Wrapper>{tech.map((t) => <Icon alt={`${t}`} src={`/${t}.svg`} />)}</Wrapper>
+        <StyledDescription>{description}</StyledDescription>
+        <Wrapper>
+          {source && source.length > 0 && (
+            <SocialIcon url={source} />
+          )}
+          {status && status.length > 0 && (
+            <StyledLiveLink href={demo} target="_blank" rel="noopener">
+              {status}
+            </StyledLiveLink>
+          )}
+        </Wrapper>
+      </StyledProjectCard>
+    </Fade>
+  );
 };
 
-export default Project
+export default Project;

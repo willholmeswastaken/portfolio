@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react';
+import styled from 'styled-components';
 
-import GlobalStyle from "./globalStyle"
-import Header from "./header"
-import Footer from "./footer"
+import GlobalStyle from './globalStyle';
+import Header from './header';
+import Footer from './footer';
 
 const StyledLayout = styled.div`
   width: 100%;
@@ -18,17 +18,15 @@ const StyledLayout = styled.div`
     margin: 0 auto;
     padding: 0 2.5rem;
   }
-`
+`;
 
-const Layout = ({ children }) => {
-  return (
-    <StyledLayout>
-      <GlobalStyle />
-      <Header />
-      <main id="main-content">{children}</main>
-      <Footer />
-    </StyledLayout>
-  )
-}
+const Layout = ({ children }) => (
+  <StyledLayout>
+    <GlobalStyle />
+    <Header />
+    <main id="main-content">{children}</main>
+    <Footer />
+  </StyledLayout>
+);
 
-export default Layout
+export default Layout;
