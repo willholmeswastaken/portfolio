@@ -6,6 +6,7 @@ import Hero from "../components/hero"
 import Layout from "../components/layout"
 import Projects from "../components/projects"
 import SEO from "../components/seo"
+import Socials from "../components/socials";
 
 export const pageQuery = graphql`
   {
@@ -44,6 +45,7 @@ const IndexPage = ({ data }) => (
     <Layout>
       <SEO title="Home" />
       <Hero content={data.hero.edges[0].node} />
+      <Socials />
       <Projects projectsData={data.projects.edges.map(project => { return { ...project.node } })} />
     </Layout>
   </Fade> 
