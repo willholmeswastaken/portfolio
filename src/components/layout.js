@@ -20,8 +20,8 @@ const StyledLayout = styled.div`
   }
 `;
 
-const Layout = ({ children }) => (
-  <StyledLayout>
+const Layout = ({ children, id }) => (
+  <StyledLayout id={id}>
     <GlobalStyle />
     <Header />
     <main id="main-content">{children}</main>
