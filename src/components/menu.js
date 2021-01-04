@@ -1,13 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
+import { elastic as ReactMenu } from 'react-burger-menu';
+import { Link } from 'gatsby';
 
 const styles = {
     bmBurgerButton: {
         position: 'fixed',
         width: '36px',
         height: '30px',
-        left: '36px',
-        top: '36px'
+        right: '16px',
+        top: '30px'
     },
     bmBurgerBars: {
         background: '#373a47'
@@ -32,14 +34,16 @@ const styles = {
         fontSize: '1.15em'
     },
     bmMorphShape: {
-        fill: '#373a47'
+        fill: 'black',
+        width: '100%'
     },
     bmItemList: {
         color: '#b8b7ad',
         padding: '0.8em'
     },
     bmItem: {
-        display: 'inline-block'
+        display: 'block',
+        marginBottom: 20
     },
     bmOverlay: {
         background: 'rgba(0, 0, 0, 0.3)'
@@ -51,11 +55,12 @@ const BurgerMenuItem = styled(Link)`
   `;
 
 const Menu = () => (
-    <Menu
+    <ReactMenu
         id={'current-menu'}
         pageWrapId={'site-layout'}
         outerContainerId={'outer-container'}
         styles={styles}
+        right
     >
         <BurgerMenuItem to="/" aria-label="home">
             Home
@@ -63,7 +68,7 @@ const Menu = () => (
         <BurgerMenuItem to="/projects" aria-label="projects">
             Projects
       </BurgerMenuItem>
-    </Menu>
+    </ReactMenu>
 );
 
 export default Menu;

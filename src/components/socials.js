@@ -17,6 +17,7 @@ const Socials = () => (
       <>
         <a href="https://dev.to/willholmes">
           <Icon alt="blog" src="/dev-to.svg" />
+          <b>&nbsp;Blog</b>
         </a>
       </>
     </StyledSocials>
