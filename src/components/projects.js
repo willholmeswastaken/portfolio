@@ -14,8 +14,7 @@ const Projects = ({ projectsData }) => (
     <StyledProjects>
       {
         projectsData.map((p) => <Project key={p.title} project={p} />)
-      } this is me testing test123
-      testing
+      }
     </StyledProjects>
   </>
 );
