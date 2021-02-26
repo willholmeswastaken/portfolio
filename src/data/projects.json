@@ -1,5 +1,13 @@
 [
     {
+        "title": "AmIOnline",
+        "description": "A gimmick PWA to tell you if you are online or not.",
+        "tech": [ "react" ],
+        "status": "Demo",
+        "source": "https://github.com/willholmeswastaken/amionline",
+        "demo": "https://amionline.fun"
+    },
+    {
         "title": "XChangeRates",
         "description": "A web app to check the latest exchange rate values.",
         "tech": [ "react", "redux"],

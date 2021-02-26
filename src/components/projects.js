@@ -13,8 +13,9 @@ const Projects = ({ projectsData }) => (
     <h2>Projects</h2>
     <StyledProjects>
       {
-                projectsData.map((p) => <Project key={p.title} project={p} />)
-            }
+        projectsData.map((p) => <Project key={p.title} project={p} />)
+      } this is me testing test123
+      testing
     </StyledProjects>
   </>
 );
