@@ -8,6 +8,22 @@
         "demo": "https://amionline.fun"
     },
     {
+        "title": "Budgeter User Service",
+        "description": "A service to provide the latest information to display a users budget summary.",
+        "tech": [ "nodejs", "typescript", "aws" ],
+        "status": "IN DEV",
+        "source": "https://github.com/willholmeswastaken/budgeter-profile-service",
+        "demo": ""
+    },
+    {
+        "title": "Bitcoin Price Observer",
+        "description": "An AWS lambda to tweet bitcoin price updates.",
+        "tech": [ "csharp", "netcore", "aws" ],
+        "status": "Demo",
+        "source": "https://github.com/willholmeswastaken/bitcoin-price-observer",
+        "demo": "https://twitter.com/WatchingBitcoin"
+    },
+    {
         "title": "XChangeRates",
         "description": "A web app to check the latest exchange rate values.",
         "tech": [ "react", "redux"],
@@ -29,14 +45,6 @@
         "tech": [ "nodejs", "typescript"],
         "status": "IN DEV",
         "source": "https://github.com/willholmeswastaken/exchange-rates-service",
-        "demo": ""
-    },
-    {
-        "title": "Budgeter User Service",
-        "description": "A service to provide the latest information to display a users budget summary.",
-        "tech": [ "nodejs", "typescript", "aws" ],
-        "status": "IN DEV",
-        "source": "https://github.com/willholmeswastaken/budgeter-profile-service",
         "demo": ""
     },
     {
