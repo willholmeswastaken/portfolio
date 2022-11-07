@@ -1,4 +1,3 @@
-import type { NextPage } from 'next';
 import Image from 'next/image';
 import FeaturedBlogPost from '../components/FeaturedBlogPost';
 import FeaturedPackage from '../components/FeaturedPackage';
