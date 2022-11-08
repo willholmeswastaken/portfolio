@@ -1,11 +1,9 @@
-import React from 'react';
-
 interface InfoTileProps {
-    url: string;
-    title: string;
-    icon: any;
-    statistic?: number;
-    description?: string;
+  url: string;
+  title: string;
+  icon: any;
+  statistic?: number;
+  description?: string;
 }
 
 const InfoTile = ({
