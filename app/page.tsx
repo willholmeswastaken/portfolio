@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import FeaturedBlogPost from '../components/FeaturedBlogPost';
 import FeaturedPackage from '../components/FeaturedPackage';
 import { BlogPost } from '../types/external/dev-to/BlogPost';
