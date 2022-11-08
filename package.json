@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "4.28.6",
+    "@netlify/plugin-nextjs": "^4.28.4-appdir.0",
     "next": "13.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
