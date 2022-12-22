@@ -1,6 +1,6 @@
 import InfoTile from './InfoTile';
 
-interface FeaturedPackageProps {
+type FeaturedPackageProps = {
   url: string;
   title: string;
   description: string;

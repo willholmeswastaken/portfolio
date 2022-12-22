@@ -1,6 +1,6 @@
 import InfoTile from './InfoTile';
 
-interface FeaturedBlogPostProps {
+type FeaturedBlogPostProps = {
   title: string;
   url: string;
   likes: number;
