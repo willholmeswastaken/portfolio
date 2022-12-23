@@ -1,69 +1,31 @@
 import Image from 'next/legacy/image';
 import FeaturedBlogPost from '../components/FeaturedBlogPost';
 import FeaturedPackage from '../components/FeaturedPackage';
-import { BlogPost } from '../types/external/dev-to/BlogPost';
-import { PackagesResponse } from '../types/external/npms/Packages';
 import FeaturedProject from '../components/FeaturedProject';
+import { GetServerSideProps, NextPage } from 'next';
+import { BlogPostViewModel, PackageViewModel, ProjectViewModel } from '../types/ViewModels';
+import { HomeData } from '../HomeData';
 
-type BlogPostViewModel = {
-  id: number;
-  title: string;
-  likes: number;
-  url: string;
-}
+type Props = {
+  blogPosts: Array<BlogPostViewModel>;
+  packages: Array<PackageViewModel>;
+  projects: Array<ProjectViewModel>;
+};
 
-type PackageViewModel = {
-  url: string;
-  title: string;
-  description: string;
-}
-
-type ProjectViewModel = {
-  name: string;
-  description: string;
-  url: string;
-}
-
-async function getBlogPosts() {
-  const blogPostsResponse = await fetch('https://dev.to/api/articles?username=willholmes', { next: { revalidate: 3600 } });
-  const blogPostsParsed: Array<BlogPost> = await blogPostsResponse.json();
-  const blogPosts: Array<BlogPostViewModel> = blogPostsParsed.slice(0, 3).map(x => ({
-    id: x.id,
-    title: x.title,
-    url: x.url,
-    likes: x.positive_reactions_count,
-  }));
-  return blogPosts;
-}
-
-async function getPackages() {
-  const packagesResponse = await fetch('https://api.npms.io/v2/search?q=author:willholmeswastaken', { next: { revalidate: 3600 } });
-  const packagesParsed: PackagesResponse = await packagesResponse.json();
-  const packages: Array<PackageViewModel> = packagesParsed.results.map(x => ({
-    url: x.package.links.npm,
-    title: x.package.name,
-    description: x.package.description,
-  }));
-  return packages;
-}
-
-const projects: Array<ProjectViewModel> = [
-  {
-    name: 'Skrt',
-    description: 'A url shortener, built with NextJs + TS',
-    url: 'https://skrt.to'
-  },
-  {
-    name: 'Tweet Thread',
-    description: 'Create twitter threads and publish them easily, built with NextJs + TS',
-    url: 'https://tweet-thread.vercel.app'
-  }
-];
-
-export default async function Page() {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const { getBlogPosts, getPackages, projects } = new HomeData();
   const blogPosts = await getBlogPosts();
   const packages = await getPackages();
+  return {
+    props: {
+      blogPosts,
+      packages,
+      projects
+    }
+  }
+};
 
+const Home: NextPage<Props> = ({ blogPosts, packages, projects }) => {
   return (
     <>
       <div className="flex flex-row items-start">
@@ -127,3 +89,5 @@ export default async function Page() {
     </>
   )
 };
+
+export default Home;
