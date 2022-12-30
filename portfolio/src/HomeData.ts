@@ -15,11 +15,6 @@ export class HomeData {
       description: 'Create twitter threads and publish them easily, built with NextJs + TS',
       url: 'https://tweet-thread.vercel.app',
     },
-    {
-      name: 'Random Cat',
-      description: 'A simple web app that finds random cat photos built with Astro + TS',
-      url: 'https://random-cat-eta.vercel.app/',
-    },
   ];
 
   async getBlogPosts() {
