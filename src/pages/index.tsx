@@ -5,6 +5,7 @@ import FeaturedProject from '../components/FeaturedProject';
 import { GetServerSideProps, NextPage } from 'next';
 import { BlogPostViewModel, PackageViewModel, ProjectViewModel } from '../types/ViewModels';
 import { HomeData } from '../HomeData';
+import Head from 'next/head';
 
 type Props = {
   blogPosts: Array<BlogPostViewModel>;
@@ -28,6 +29,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 const Home: NextPage<Props> = ({ blogPosts, packages, projects }) => {
   return (
     <>
+      <Head>
+        <title>Will Holmes - Developer</title>
+        <meta name="description" content="A full stack developer based in the UK with a passion for all things software dev." />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="flex flex-row items-start">
         <div className="flex flex-col pr-8">
           <h1 className='text-4xl sm:text-5xl text-white font-bold mb-2'>Will Holmes</h1>
