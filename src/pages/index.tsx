@@ -58,7 +58,7 @@ const Home: NextPage<Props> = ({ blogPosts, packages, projects }) => {
       </div>
       <div className="flex flex-col mt-12">
         <h2 className='text-4xl text-white font-bold mb-6'>Latest Blog Posts</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {
             blogPosts?.map(x => (
               <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} />
@@ -74,7 +74,7 @@ const Home: NextPage<Props> = ({ blogPosts, packages, projects }) => {
       </div>
       <div className="flex flex-col mt-12 w-full">
         <h2 className='text-4xl text-white font-bold mb-6'>Projects Deployed</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {
             projects.map(x => (
               <FeaturedProject key={x.name} name={x.name} url={x.url} description={x.description} />
@@ -84,7 +84,7 @@ const Home: NextPage<Props> = ({ blogPosts, packages, projects }) => {
       </div>
       <div className="flex flex-col mt-12 w-full">
         <h2 className='text-4xl text-white font-bold mb-6'>Packages Published</h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {
             packages?.map(x => (
               <FeaturedPackage key={x.title} title={x.title} url={x.url} description={x.description} />
