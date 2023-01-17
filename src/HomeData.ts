@@ -35,9 +35,11 @@ export class HomeData {
   }
 
   async getPackages() {
-    const packagesResponse = await fetch('https://api.npms.io/v2/search?q=author:willholmeswastaken', { next: { revalidate: 3600 } });
+    const packagesResponse = await fetch('https://registry.npmjs.org/-/v1/search?text=maintainer:devwillholmes', {
+      next: { revalidate: 3600 },
+    });
     const packagesParsed: PackagesResponse = await packagesResponse.json();
-    const packages: Array<PackageViewModel> = packagesParsed.results.map(x => ({
+    const packages: Array<PackageViewModel> = packagesParsed.objects.map(x => ({
       url: x.package.links.npm,
       title: x.package.name,
       description: x.package.description,
