@@ -6,6 +6,11 @@ export class HomeData {
   constructor() {}
   readonly projects: Array<ProjectViewModel> = [
     {
+      name: 'Personal Profile Generator',
+      description: 'Generate a personal profile about yourself with AI, built with NextJs + TS',
+      url: 'https://personal-profile-generator.vercel.app/',
+    },
+    {
       name: 'Skrt',
       description: 'A url shortener, built with NextJs + TS',
       url: 'https://skrt.to',

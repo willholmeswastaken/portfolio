@@ -13,7 +13,7 @@ const InfoTile = ({
   statistic,
   description,
 }: InfoTileProps) => (
-  <a className="transform hover:scale-[1.01] transition-all rounded-xl w-full md:w-1/3 bg-gradient-to-r p-1 from-[#3e81ce] to-[#1b29a3]" href={url}>
+  <a className="transform hover:scale-[1.01] transition-all rounded-xl w-full bg-gradient-to-r p-1 from-[#3e81ce] to-[#1b29a3]" href={url}>
     <div className="flex flex-col justify-between h-full bg-black bg-opacity-95 rounded-lg p-4">
       <div className="flex flex-col md:flex-row justify-between">
         <h4 className="text-lg md:text-lg font-medium mb-6 sm:mb-10 w-full text-gray-100 tracking-tight">{title}</h4>
