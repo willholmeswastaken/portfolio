@@ -23,7 +23,7 @@ export class HomeData {
     {
       name: 'Skrt',
       description: 'A url shortener, built with NextJs + TS',
-      url: 'https://skrt.to',
+      url: 'https://skrt.vercel.app',
     },
     {
       name: 'Tweet Thread',
