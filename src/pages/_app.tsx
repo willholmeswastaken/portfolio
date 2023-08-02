@@ -5,7 +5,7 @@ import Nav from "../components/Nav";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <div className='bg-black bg-opacity-95 text-white min-h-screen'>
+    <div className='text-white min-h-screen'>
       <div className="flex flex-col justify-center px-8">
         <Nav />
       </div>

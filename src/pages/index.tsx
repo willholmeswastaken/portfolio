@@ -11,22 +11,25 @@ type Props = {
   blogPosts: Array<BlogPostViewModel>;
   packages: Array<PackageViewModel>;
   projects: Array<ProjectViewModel>;
+  hashnodePosts: Array<BlogPostViewModel>;
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const { getBlogPosts, getPackages, projects } = new HomeData();
+  const { getBlogPosts, getPackages, projects, getHashnodePosts } = new HomeData();
   const blogPosts = await getBlogPosts();
   const packages = await getPackages();
+  const hashnodePosts = await getHashnodePosts();
   return {
     props: {
       blogPosts,
       packages,
-      projects
+      projects,
+      hashnodePosts
     }
   }
 };
 
-const Home: NextPage<Props> = ({ blogPosts, packages, projects }) => {
+const Home: NextPage<Props> = ({ blogPosts, packages, projects, hashnodePosts }) => {
   return (
     <>
       <Head>
@@ -58,9 +61,16 @@ const Home: NextPage<Props> = ({ blogPosts, packages, projects }) => {
       </div>
       <div className="flex flex-col mt-12">
         <h2 className='text-4xl text-white font-bold mb-6'>Latest Blog Posts</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
           {
             blogPosts?.map(x => (
+              <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} />
+            ))
+          }
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {
+            hashnodePosts?.map(x => (
               <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} />
             ))
           }

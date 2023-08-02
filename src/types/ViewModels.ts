@@ -1,5 +1,5 @@
 export type BlogPostViewModel = {
-  id: number;
+  id: number | string;
   title: string;
   likes: number;
   url: string;

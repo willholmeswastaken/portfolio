@@ -15,6 +15,11 @@ const Nav = () => {
     },
     {
       isNextLink: false,
+      href: 'https://willholmes.hashnode.dev/',
+      text: 'Hashnode',
+    },
+    {
+      isNextLink: false,
       href: 'https://github.com/willholmeswastaken',
       text: 'Github',
     },
