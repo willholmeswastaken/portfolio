@@ -71,7 +71,7 @@ const Home: NextPage<Props> = ({ blogPosts, packages, projects, hashnodePosts })
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {
             hashnodePosts?.map(x => (
-              <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} />
+              <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} views={x.views} />
             ))
           }
         </div>

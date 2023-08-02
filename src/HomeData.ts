@@ -84,7 +84,8 @@ export class HomeData {
           id: x.slug,
           title: x.title,
           url: `https://willholmes.hashnode.dev/${x.slug}`,
-          likes: x.totalReactions ?? 0,
+          likes: x.totalReactions,
+          views: x.views,
         } as BlogPostViewModel)
     );
   }

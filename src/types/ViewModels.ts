@@ -3,6 +3,7 @@ export type BlogPostViewModel = {
   title: string;
   likes: number;
   url: string;
+  views?: number;
 };
 
 export type PackageViewModel = {
