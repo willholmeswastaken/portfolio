@@ -1,6 +1,6 @@
 import { ProjectViewModel, BlogPostViewModel, PackageViewModel } from './types/ViewModels';
 import { BlogPost } from './types/external/dev-to/BlogPost';
-import { UserResponse } from './types/external/hashnode';
+import { UserResponse } from './types/external/Hashnode';
 import { PackagesResponse } from './types/external/npms/Packages';
 
 export class HomeData {
@@ -43,7 +43,7 @@ export class HomeData {
     },
   ];
 
-  async getBlogPosts() {
+  async getBlogPosts(): Promise<Array<BlogPostViewModel>> {
     const blogPostsResponse = await fetch('https://dev.to/api/articles?username=willholmes', { next: { revalidate: 3600 } });
     const blogPostsParsed: Array<BlogPost> = await blogPostsResponse.json();
     const blogPosts: Array<BlogPostViewModel> = blogPostsParsed.slice(0, 3).map(x => ({
@@ -55,7 +55,7 @@ export class HomeData {
     return blogPosts;
   }
 
-  async getPackages() {
+  async getPackages(): Promise<Array<PackageViewModel>> {
     const packagesResponse = await fetch('https://registry.npmjs.org/-/v1/search?text=maintainer:devwillholmes', {
       next: { revalidate: 3600 },
     });
@@ -68,13 +68,14 @@ export class HomeData {
     return packages;
   }
 
-  async getHashnodePosts() {
+  async getHashnodePosts(): Promise<Array<BlogPostViewModel>> {
     const posts = await fetch('https://api.hashnode.com/', {
       body: '{"query":"{\\n  user(username: \\"willholmes\\") {\\n    publication {\\n      posts(page: 0) {\\n       slug\\n       title\\n       brief\\n       coverImage\\n      views\\n        totalReactions\\n        dateAdded\\n        dateFeatured\\n      }\\n    }\\n  }\\n}\\n"}',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      next: { revalidate: 3600 },
     });
     const postsParsed = (await posts.json()) as UserResponse;
     return postsParsed.data.user.publication.posts.slice(0, 3).map(
