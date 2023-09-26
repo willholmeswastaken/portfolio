@@ -7,6 +7,11 @@ export class HomeData {
   constructor() {}
   readonly projects: Array<ProjectViewModel> = [
     {
+      name: 'WillTransfer',
+      description: 'A simple and lightweight version of WeTransfer, built with NextJs + TS',
+      url: 'https://willtransfer.vercel.app/',
+    },
+    {
       name: 'HolidayMaker',
       description: 'Add places that you have been to and see them on a map, built with NextJs + TS',
       url: 'https://holidaymaker.vercel.app/',
