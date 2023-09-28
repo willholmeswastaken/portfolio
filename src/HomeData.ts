@@ -74,24 +74,29 @@ export class HomeData {
   }
 
   async getHashnodePosts(): Promise<Array<BlogPostViewModel>> {
-    const posts = await fetch('https://api.hashnode.com/', {
-      body: '{"query":"{\\n  user(username: \\"willholmes\\") {\\n    publication {\\n      posts(page: 0) {\\n       slug\\n       title\\n       brief\\n       coverImage\\n      views\\n        totalReactions\\n        dateAdded\\n        dateFeatured\\n      }\\n    }\\n  }\\n}\\n"}',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      next: { revalidate: 3600 },
-    });
-    const postsParsed = (await posts.json()) as UserResponse;
-    return postsParsed.data.user.publication.posts.slice(0, 3).map(
-      x =>
-        ({
-          id: x.slug,
-          title: x.title,
-          url: `https://willholmes.hashnode.dev/${x.slug}`,
-          likes: x.totalReactions,
-          views: x.views,
-        } as BlogPostViewModel)
-    );
+    try {
+      const posts = await fetch('https://api.hashnode.com/', {
+        body: '{"query":"{\\n  user(username: \\"willholmes\\") {\\n    publication {\\n      posts(page: 0) {\\n       slug\\n       title\\n       brief\\n       coverImage\\n      views\\n        totalReactions\\n        dateAdded\\n        dateFeatured\\n      }\\n    }\\n  }\\n}\\n"}',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        next: { revalidate: 3600 },
+      });
+      const postsParsed = (await posts.json()) as UserResponse;
+      return postsParsed.data.user.publication.posts.slice(0, 3).map(
+        x =>
+          ({
+            id: x.slug,
+            title: x.title,
+            url: `https://willholmes.hashnode.dev/${x.slug}`,
+            likes: x.totalReactions,
+            views: x.views,
+          } as BlogPostViewModel)
+      );
+    } catch (e) {
+      console.warn(e);
+      return [];
+    }
   }
 }
