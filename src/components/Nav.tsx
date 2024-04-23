@@ -25,7 +25,7 @@ const Nav = () => {
     },
   ];
   return (
-    <nav className='flex items-center justify-between w-full relative max-w-2xl border-gray-700 mx-auto pt-3 pb-8 sm:pb-10 bg-opacity-60 text-gray-100'>
+    <nav className='flex items-center justify-between w-full relative border-gray-700 mx-auto pt-3 pb-8 sm:pb-10 bg-opacity-60 text-gray-100'>
       <div className='flex gap-x-1 flex-row ml-[-1rem] py-8'>
         {navItems.map(x => (
           <NavLinkTag key={x.text} isNextLink={x.isNextLink} href={x.href} text={x.text} />
