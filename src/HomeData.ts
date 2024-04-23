@@ -75,8 +75,8 @@ export class HomeData {
 
   async getHashnodePosts(): Promise<Array<BlogPostViewModel>> {
     try {
-      const posts = await fetch('https://api.hashnode.com/', {
-        body: '{"query":"{\\n  user(username: \\"willholmes\\") {\\n    publication {\\n      posts(page: 0) {\\n       slug\\n       title\\n       brief\\n       coverImage\\n      views\\n        totalReactions\\n        dateAdded\\n        dateFeatured\\n      }\\n    }\\n  }\\n}\\n"}',
+      const posts = await fetch('https://gql.hashnode.com', {
+        body: '{"query":"query Publication{\\n  publication(\\n    host: \\"willholmes.hashnode.dev\\"\\n  ) {\\n    posts(first: 3) {\\n      edges {\\n        node {\\n          title\\n          slug\\n          views\\n          reactionCount\\n        }\\n      }\\n      totalDocuments\\n    }\\n  } \\n}","operationName":"Publication"}',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,14 +84,15 @@ export class HomeData {
         next: { revalidate: 3600 },
       });
       const postsParsed = (await posts.json()) as UserResponse;
-      return postsParsed.data.user.publication.posts.slice(0, 3).map(
+      console.log(posts.status);
+      return postsParsed.data.publication.posts.edges.map(
         x =>
           ({
-            id: x.slug,
-            title: x.title,
-            url: `https://willholmes.hashnode.dev/${x.slug}`,
-            likes: x.totalReactions,
-            views: x.views,
+            id: x.node.slug,
+            title: x.node.title,
+            url: `https://willholmes.hashnode.dev/${x.node.slug}`,
+            likes: x.node.reactionCount,
+            views: x.node.views,
           } as BlogPostViewModel)
       );
     } catch (e) {

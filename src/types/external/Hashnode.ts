@@ -3,24 +3,25 @@ export type UserResponse = {
 };
 
 export type Data = {
-  user: User;
-};
-
-export type User = {
   publication: Publication;
 };
 
 export type Publication = {
-  posts: Post[];
+  posts: Posts;
 };
 
-export type Post = {
-  slug: string;
+export type Posts = {
+  edges: Edge[];
+  totalDocuments: number;
+};
+
+export type PostNode = {
   title: string;
-  brief: string;
-  coverImage: string;
+  slug: string;
   views: number;
-  totalReactions: number;
-  dateAdded: string;
-  dateFeatured?: any;
+  reactionCount: number;
+}
+
+export type Edge = {
+  node: PostNode;
 };

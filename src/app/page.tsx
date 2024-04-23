@@ -37,14 +37,14 @@ export default async function Home() {
                 <h2 className='text-4xl text-white font-bold mb-6'>Latest Blog Posts</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                     {
-                        blogPosts?.map(x => (
+                        hashnodePosts?.map(x => (
                             <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} />
                         ))
                     }
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {
-                        hashnodePosts?.map(x => (
+                        blogPosts?.map(x => (
                             <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} views={x.views} />
                         ))
                     }
