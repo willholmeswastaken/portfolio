@@ -13,23 +13,25 @@ const FeaturedPackage = ({
   title,
   description,
 }: FeaturedPackageProps) => (
-  <Card>
-    <CardHeader>
-      <div className="bg-gray-200 dark:bg-gray-700 rounded-t-lg py-8 px-6">
-        <PackageIcon className="h-8 w-8 text-gray-600 dark:text-gray-400" />
-      </div>
-    </CardHeader>
-    <CardContent>
-      <h3 className="text-xl md:text-2xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-400 mb-4">
-        {description}
-      </p>
-      <div className="flex items-center space-x-4">
-        <Link className="text-blue-500 hover:text-blue-600" href={url}>
-          View on npm
-        </Link>
-      </div>
-    </CardContent>
+  <Card className='hover:scale-105 transition-transform duration-300'>
+    <Link href={url}>
+      <CardHeader>
+        <div className="bg-gray-200 dark:bg-gray-700 rounded-t-lg py-8 px-6">
+          <PackageIcon className="h-8 w-8 text-gray-600 dark:text-gray-400" />
+        </div>
+      </CardHeader>
+      <CardContent>
+        <h3 className="text-xl md:text-2xl font-bold mb-2">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          {description}
+        </p>
+        <div className="flex items-center space-x-4">
+          <Link className="text-blue-500 hover:text-blue-600" href={url}>
+            View on npm
+          </Link>
+        </div>
+      </CardContent>
+    </Link>
   </Card>
 );
 
