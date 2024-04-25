@@ -20,6 +20,12 @@ export type PostNode = {
   slug: string;
   views: number;
   reactionCount: number;
+  coverImage: CoverImage;
+  brief: string;
+}
+
+export type CoverImage = {
+  url: string;
 }
 
 export type Edge = {
