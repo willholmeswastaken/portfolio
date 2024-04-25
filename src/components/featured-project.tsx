@@ -17,9 +17,9 @@ const FeatureProjectPost = ({ name, description, url }: FeaturedProjectProps) =>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                     {description}
                 </p>
-                <Link className="text-blue-500 hover:text-blue-600" href={url}>
+                <span className="text-blue-500 hover:text-blue-600">
                     View Website
-                </Link>
+                </span>
             </CardContent>
         </Link>
     </Card>

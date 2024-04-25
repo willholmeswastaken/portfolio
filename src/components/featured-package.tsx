@@ -26,9 +26,9 @@ const FeaturedPackage = ({
           {description}
         </p>
         <div className="flex items-center space-x-4">
-          <Link className="text-blue-500 hover:text-blue-600" href={url}>
+          <span className="text-blue-500 hover:text-blue-600">
             View on npm
-          </Link>
+          </span>
         </div>
       </CardContent>
     </Link>

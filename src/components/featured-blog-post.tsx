@@ -37,9 +37,9 @@ const FeaturedBlogPost = ({ title, description, url, likes, views, coverImage }:
         <p className="text-gray-600 dark:text-gray-400 mb-4">
           {description}
         </p>
-        <Link className="text-blue-500 hover:text-blue-600" href={url}>
+        <span className="text-blue-500 hover:text-blue-600">
           Read More
-        </Link>
+        </span>
       </CardContent>
     </Link>
   </Card>

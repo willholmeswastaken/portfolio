@@ -6,10 +6,12 @@ import Hero from '@/components/hero';
 
 export default async function Home() {
     const { getBlogPosts, getPackages, projects, getHashnodePosts } = new HomeData();
-    const devToBlogPosts = await getBlogPosts();
-    const packages = await getPackages();
-    const hashnodePosts = await getHashnodePosts();
-    var blogPosts = hashnodePosts.concat(devToBlogPosts).filter((post) => post.coverImage);
+    const [devToBlogPosts, packages, hashnodePosts] = await Promise.all([
+        getBlogPosts(),
+        getPackages(),
+        getHashnodePosts()
+    ]);
+    const blogPosts = hashnodePosts.concat(devToBlogPosts).filter((post) => post.coverImage);
     return (
         <>
             <div className="flex flex-col min-h-screen">
