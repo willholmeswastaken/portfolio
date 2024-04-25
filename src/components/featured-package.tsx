@@ -26,12 +26,8 @@ const FeaturedPackage = ({
       </p>
       <div className="flex items-center space-x-4">
         <Link className="text-blue-500 hover:text-blue-600" href={url}>
-          View on GitHub
+          View on npm
         </Link>
-        <div className="flex items-center space-x-1 text-gray-600 dark:text-gray-400">
-          <StarIcon className="h-4 w-4" />
-          <span>20k</span>
-        </div>
       </div>
     </CardContent>
   </Card>
