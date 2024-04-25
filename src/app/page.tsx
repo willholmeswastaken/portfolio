@@ -3,79 +3,112 @@ import { HomeData } from '../HomeData';
 import FeaturedBlogPost from '../components/FeaturedBlogPost';
 import FeaturedProject from '../components/FeaturedProject';
 import FeaturedPackage from '../components/FeaturedPackage';
+import Hero from '@/components/hero';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import Link from 'next/link';
 
 export default async function Home() {
     const { getBlogPosts, getPackages, projects, getHashnodePosts } = new HomeData();
-    const blogPosts = await getBlogPosts();
+    const devToBlogPosts = await getBlogPosts();
     const packages = await getPackages();
     const hashnodePosts = await getHashnodePosts();
+    var blogPosts = hashnodePosts.concat(devToBlogPosts).filter((post) => post.coverImage);
     return (
         <>
-            <div className="flex flex-row items-start">
-                <div className="flex flex-col pr-8">
-                    <h1 className='text-4xl sm:text-5xl text-white font-bold mb-2'>Will Holmes</h1>
-                    <div className="flex flex-row">
-                        <p className='text-white'>
-                            Full Stack Developer based in the
-                            {' '}
-                            <span className="text-white font-semibold">UK</span>
-                        </p>
-                    </div>
-                    <p className='text-gray-500'>Developing full stack applications built mainly with react, typescript and (dotnet or node).</p>
-                </div>
-                <div className="w-[163px] sm:w-[176px] relative mb-8 sm:mb-0 mr-auto">
-                    <Image
-                        alt=''
-                        src='https://avatars.githubusercontent.com/u/13040458'
-                        width='125'
-                        height='125'
-                        className='rounded-full object-cover'
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col mt-12">
-                <h2 className='text-4xl text-white font-bold mb-6'>Latest Blog Posts</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-                    {
-                        hashnodePosts?.map(x => (
-                            <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} />
-                        ))
-                    }
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {
-                        blogPosts?.map(x => (
-                            <FeaturedBlogPost key={x.id} title={x.title} url={x.url} likes={x.likes} views={x.views} />
-                        ))
-                    }
-                </div>
-                <a className='flex flex-row mt-6 text-gray-500 hover:text-white duration-200' href="https://dev.to/willholmes">
-                    Read all posts&nbsp;
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                        <path fillRule="evenodd" d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z" clipRule="evenodd" />
-                    </svg>
-                </a>
-            </div>
-            <div className="flex flex-col mt-12 w-full">
-                <h2 className='text-4xl text-white font-bold mb-6'>Projects Deployed</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {
-                        projects.map(x => (
-                            <FeaturedProject key={x.name} name={x.name} url={x.url} description={x.description} />
-                        ))
-                    }
-                </div>
-            </div>
-            <div className="flex flex-col mt-12 w-full">
-                <h2 className='text-4xl text-white font-bold mb-6'>Packages Published</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {
-                        packages?.map(x => (
-                            <FeaturedPackage key={x.title} title={x.title} url={x.url} description={x.description} />
-                        ))
-                    }
-                </div>
+            <div className="flex flex-col min-h-screen">
+                <main className="flex-1">
+                    <Hero />
+                    <section className="py-12 md:py-16 lg:py-20" id="blog">
+                        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+                            <div className="mb-8 md:mb-12 lg:mb-16">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">Latest Blog Posts</h2>
+                                <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl lg:text-2xl">
+                                    Check out my latest blog posts on web development and design.
+                                </p>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+                                {
+                                    blogPosts.map((post) => (
+                                        <FeaturedBlogPost
+                                            key={post.id}
+                                            title={post.title}
+                                            description={post.description}
+                                            url={post.url}
+                                            likes={post.likes}
+                                            views={post.views}
+                                            coverImage={post.coverImage}
+                                        />
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </section>
+                    <section className="py-12" id="packages">
+                        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+                            <div className="mb-8 md:mb-12 lg:mb-16">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">My Open-Source Packages</h2>
+                                <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl lg:text-2xl">
+                                    Check out the open-source packages I've contributed to.
+                                </p>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+                                <FeaturedPackage description="A modern and responsive website for a fictional company." title="Acme Inc" url="#" />
+                            </div>
+                        </div>
+                    </section>
+                    <section className="py-12" id="websites">
+                        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+                            <div className="mb-8 md:mb-12 lg:mb-16">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">My Deployed Websites</h2>
+                                <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl lg:text-2xl">
+                                    Check out some of the websites I've deployed.
+                                </p>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+                                <Card>
+                                    <CardHeader>
+                                        <h3 className="text-xl md:text-2xl font-bold mb-2">Acme Inc</h3>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-gray-600 dark:text-gray-400 mb-4">
+                                            A modern and responsive website for a fictional company.
+                                        </p>
+                                        <Link className="text-blue-500 hover:text-blue-600" href="#">
+                                            View Website
+                                        </Link>
+                                    </CardContent>
+                                </Card>
+                                <Card>
+                                    <CardHeader>
+                                        <h3 className="text-xl md:text-2xl font-bold mb-2">Acme Inc</h3>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-gray-600 dark:text-gray-400 mb-4">
+                                            A modern and responsive website for a fictional company.
+                                        </p>
+                                        <Link className="text-blue-500 hover:text-blue-600" href="#">
+                                            View Website
+                                        </Link>
+                                    </CardContent>
+                                </Card>
+                                <Card>
+                                    <CardHeader>
+                                        <h3 className="text-xl md:text-2xl font-bold mb-2">Acme Inc</h3>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-gray-600 dark:text-gray-400 mb-4">
+                                            A modern and responsive website for a fictional company.
+                                        </p>
+                                        <Link className="text-blue-500 hover:text-blue-600" href="#">
+                                            View Website
+                                        </Link>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </div>
+                    </section>
+                </main>
             </div>
         </>
-    )
+    );
 }
