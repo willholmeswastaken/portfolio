@@ -7,9 +7,9 @@ export class HomeData {
   constructor() {}
   readonly projects: Array<ProjectViewModel> = [
     {
-      name: 'WillTransfer',
-      description: 'A simple and lightweight version of WeTransfer, built with NextJs + TS',
-      url: 'https://willtransfer.vercel.app/',
+      name: 'Wub',
+      description: 'A url shortener inspired by dub.co built with NextJs + TS',
+      url: 'https://wub-one.vercel.app/',
     },
     {
       name: 'HolidayMaker',
@@ -22,14 +22,19 @@ export class HomeData {
       url: 'https://daily-kindle-highlights.vercel.app/',
     },
     {
-      name: 'Profile Generator',
-      description: 'Generate a personal profile about yourself with AI, built with NextJs + TS',
-      url: 'https://personal-profile-generator.vercel.app/',
-    },
-    {
       name: 'LinkList',
       description: 'Open-source alternative to linktree, built with NextJs + TS',
       url: 'https://linklist-sigma.vercel.app/',
+    },
+    {
+      name: 'WillTransfer',
+      description: 'A simple and lightweight version of WeTransfer, built with NextJs + TS',
+      url: 'https://willtransfer.vercel.app/',
+    },
+    {
+      name: 'Profile Generator',
+      description: 'Generate a personal profile about yourself with AI, built with NextJs + TS',
+      url: 'https://personal-profile-generator.vercel.app/',
     },
     {
       name: 'Skrt',
