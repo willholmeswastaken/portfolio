@@ -2,8 +2,6 @@ import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
-import Nav from '@/components/nav';
-import { Link, Twitter, Github, Linkedin } from 'lucide-react';
 
 export const metadata = {
   title: 'Will Holmes - Developer',
