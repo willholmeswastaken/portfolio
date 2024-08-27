@@ -33,7 +33,8 @@ export default async function Component() {
                 </p>
               </div>
             </div>
-            <div className='flex justify-center mt-6'>
+            {/* Come back to this */}
+            {/*<div className='flex justify-center mt-6'>
               <div className='flex flex-col sm:flex-row gap-4'>
                 <Button asChild size='sm'>
                   <Link href='#contact'>Get in Touch</Link>
@@ -42,7 +43,7 @@ export default async function Component() {
                   <Link href='/resume.pdf'>Download Resume</Link>
                 </Button>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
         <section className='w-full py-12 md:py-24 lg:py-32' id='blog'>
@@ -63,7 +64,7 @@ export default async function Component() {
             </div>
             <div className='mt-12 text-center'>
               <Button asChild size='lg'>
-                <Link href='/blog'>View All Posts</Link>
+                <Link href='https://willholmes.hashnode.dev'>View All Posts</Link>
               </Button>
             </div>
           </div>

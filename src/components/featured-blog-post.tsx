@@ -17,7 +17,8 @@ const FeaturedBlogPost = ({ title, description, url, likes, views, coverImage }:
   <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300'>
     <CardHeader>
       <CardTitle className='text-2xl'>{title}</CardTitle>
-      <CardDescription>May 1, 2023 • 5 min read</CardDescription>
+      {/* Come back to this */}
+      {/* <CardDescription>May 1, 2023 • 5 min read</CardDescription> */}
     </CardHeader>
     <CardContent className='flex-grow'>
       <p className='text-gray-500 dark:text-gray-400'>{description}</p>
