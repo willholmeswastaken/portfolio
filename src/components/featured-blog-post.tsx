@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
+import { ChevronRight } from 'lucide-react';
+import { Button } from './ui/button';
 
 type FeaturedBlogPostProps = {
   title: string;
@@ -9,39 +11,25 @@ type FeaturedBlogPostProps = {
   likes: number;
   views?: number;
   coverImage?: string;
-}
+};
 
 const FeaturedBlogPost = ({ title, description, url, likes, views, coverImage }: FeaturedBlogPostProps) => (
-
-  <Card className='hover:scale-105 transition-transform duration-300'>
-    <Link href={url}>
-      <CardHeader>
-        {coverImage && (
-          <Image
-            alt={`Blog Post ${title}`}
-            className="rounded-t-lg"
-            height={200}
-            unoptimized
-            src={coverImage}
-            style={{
-              aspectRatio: "400/200",
-              objectFit: "cover",
-            }}
-            width={1000}
-          />
-
-        )}
-      </CardHeader>
-      <CardContent>
-        <h3 className="text-xl md:text-2xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
-          {description}
-        </p>
-        <span className="text-blue-500 hover:text-blue-600">
-          Read More
-        </span>
-      </CardContent>
-    </Link>
+  <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300'>
+    <CardHeader>
+      <CardTitle className='text-2xl'>{title}</CardTitle>
+      {/* Come back to this */}
+      {/* <CardDescription>May 1, 2023 • 5 min read</CardDescription> */}
+    </CardHeader>
+    <CardContent className='flex-grow'>
+      <p className='text-gray-500 dark:text-gray-400'>{description}</p>
+    </CardContent>
+    <div className='p-6 pt-0'>
+      <Button className='w-full group-hover:translate-x-1 transition-transform' variant='ghost' asChild>
+        <Link href={url}>
+          Read More <ChevronRight className='ml-2 h-4 w-4' />
+        </Link>
+      </Button>
+    </div>
   </Card>
 );
 

@@ -10,46 +10,55 @@ export class HomeData {
       name: 'Wub',
       description: 'A url shortener inspired by dub.co built with NextJs + TS',
       url: 'https://wub-one.vercel.app/',
+      githubUrl: 'https://github.com/willholmeswastaken/wub',
     },
     {
       name: 'HolidayMaker',
       description: 'Add places that you have been to and see them on a map, built with NextJs + TS',
       url: 'https://holidaymaker.vercel.app/',
+      githubUrl: 'https://github.com/willholmeswastaken/holidaymaker',
     },
     {
       name: 'Rekindled',
       description: 'Upload kindle highlights and get a daily email of them, built with NextJs + TS',
       url: 'https://daily-kindle-highlights.vercel.app/',
+      githubUrl: 'https://github.com/willholmeswastaken/daily-kindle-highlights',
     },
     {
       name: 'LinkList',
       description: 'Open-source alternative to linktree, built with NextJs + TS',
       url: 'https://linklist-sigma.vercel.app/',
+      githubUrl: 'https://github.com/willholmeswastaken/linklist',
     },
     {
       name: 'WillTransfer',
       description: 'A simple and lightweight version of WeTransfer, built with NextJs + TS',
       url: 'https://willtransfer.vercel.app/',
+      githubUrl: 'https://github.com/willholmeswastaken/wetransfer',
     },
     {
       name: 'Profile Generator',
       description: 'Generate a personal profile about yourself with AI, built with NextJs + TS',
       url: 'https://personal-profile-generator.vercel.app/',
+      githubUrl: 'https://github.com/willholmeswastaken/personal-profile-generator',
     },
     {
       name: 'Skrt',
       description: 'A url shortener, built with NextJs + TS',
       url: 'https://skrt.vercel.app',
+      githubUrl: 'https://github.com/willholmeswastaken/skrt',
     },
     {
       name: 'Tweet Thread',
       description: 'Create twitter threads and publish them easily, built with NextJs + TS',
       url: 'https://tweet-thread.vercel.app',
+      githubUrl: 'https://github.com/willholmeswastaken/tweet-thread',
     },
     {
       name: 'Random Cat',
       description: 'A simple web app that finds random cat photos built with Astro + TS',
       url: 'https://random-cat-eta.vercel.app/',
+      githubUrl: 'https://github.com/willholmeswastaken/random-cat',
     },
   ];
 
@@ -76,6 +85,8 @@ export class HomeData {
       url: x.package.links.npm,
       title: x.package.name,
       description: x.package.description,
+      githubUrl: x.package.links.repository,
+      version: x.package.version,
     }));
     return packages;
   }
@@ -83,7 +94,7 @@ export class HomeData {
   async getHashnodePosts(): Promise<Array<BlogPostViewModel>> {
     try {
       const posts = await fetch('https://gql.hashnode.com', {
-        body: '{\"query\":\"query Publication{\\n  publication(\\n    host: \\\"willholmes.hashnode.dev\\\"\\n  ) {\\n    posts(first: 3) {\\n      edges {\\n        node {\\n          title\\n          brief\\n          slug\\n          views\\n          reactionCount\\n          coverImage {\\n            url\\n          }\\n        }\\n      }\\n      totalDocuments\\n    }\\n  } \\n}\",\"operationName\":\"Publication\"}',
+        body: '{"query":"query Publication{\\n  publication(\\n    host: \\"willholmes.hashnode.dev\\"\\n  ) {\\n    posts(first: 3) {\\n      edges {\\n        node {\\n          title\\n          brief\\n          slug\\n          views\\n          reactionCount\\n          coverImage {\\n            url\\n          }\\n        }\\n      }\\n      totalDocuments\\n    }\\n  } \\n}","operationName":"Publication"}',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -12,10 +12,13 @@ export type PackageViewModel = {
   url: string;
   title: string;
   description: string;
+  githubUrl: string;
+  version: string;
 };
 
 export type ProjectViewModel = {
   name: string;
   description: string;
   url: string;
+  githubUrl: string;
 };
