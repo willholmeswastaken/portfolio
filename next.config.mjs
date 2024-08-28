@@ -31,7 +31,7 @@ const config = {
       },
       {
         protocol: 'https',
-        hostname: 'wub-one.vercel.app',
+        hostname: 'vercel.app',
         pathname: '**',
       },
     ],
