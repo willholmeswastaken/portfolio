@@ -15,7 +15,9 @@ const FeatureProjectPost = ({ name, description, url, githubUrl }: FeaturedProje
   <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300'>
     <div className='relative aspect-[2/1]'>
       <Image
-        src={`${process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000'}/image?
+        src={`${
+          process.env.VERCEL_PROJECT_PRODUCTION_URL ? 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL : 'http://localhost:3000'
+        }/image?
 &url=${url}
 &dimension=1024x768`}
         alt={`${name} application screenshot`}
