@@ -14,8 +14,9 @@ type FeaturedBlogPostProps = {
 };
 
 const FeaturedBlogPost = ({ title, description, url, likes, views, coverImage }: FeaturedBlogPostProps) => (
-  <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300'>
-    <CardHeader>
+  <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300 space-y-2'>
+    <CardHeader className='pb-1 space-y-4'>
+      {coverImage && <Image src={coverImage} alt={title} width={400} height={175} className='w-full h-[175px] object-cover rounded-lg' />}
       <CardTitle className='text-2xl'>{title}</CardTitle>
       {/* Come back to this */}
       {/* <CardDescription>May 1, 2023 • 5 min read</CardDescription> */}
