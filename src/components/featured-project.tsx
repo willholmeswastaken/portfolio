@@ -15,11 +15,10 @@ const FeatureProjectPost = ({ name, description, url, githubUrl }: FeaturedProje
   <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300'>
     <div className='relative aspect-[2/1]'>
       <Image
-        unoptimized
         src={`${process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000'}/image?
 &url=${url}
 &dimension=1024x768`}
-        alt='DevOps Dashboard screenshot'
+        alt={`${name} application screenshot`}
         fill
         className='object-cover'
       />
