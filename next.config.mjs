@@ -31,7 +31,7 @@ const config = {
       },
       {
         protocol: 'https',
-        hostname: 'vercel.app',
+        hostname: 'portfolio-kqw6f7ruz-willholmeswastakens-projects.vercel.app',
         pathname: '**',
       },
     ],
