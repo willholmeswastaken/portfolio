@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import { Card, CardHeader, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import { Package, Github } from 'lucide-react';
-import { Button } from './ui/button';
 
 type FeaturedPackageProps = {
   url: string;
@@ -12,31 +10,28 @@ type FeaturedPackageProps = {
 };
 
 const FeaturedPackage = ({ url, title, description, githubUrl, version }: FeaturedPackageProps) => (
-  <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300'>
-    <CardHeader>
-      <CardTitle className='flex items-center text-2xl'>
-        <Package className='mr-2 h-5 w-5 text-primary' />
-        {title}
-      </CardTitle>
-      <CardDescription>v{version}</CardDescription>
-    </CardHeader>
-    <CardContent className='flex-grow'>
-      <p className='text-gray-500 dark:text-gray-400'>{description}</p>
-    </CardContent>
-    <div className='p-6 pt-0'>
-      <div className='flex space-x-2'>
-        <Button variant='outline' asChild className='flex-1'>
-          <Link href={url}>NPM</Link>
-        </Button>
-        <Button variant='outline' asChild className='flex-1'>
-          <Link href={githubUrl}>
-            <Github className='mr-2 h-4 w-4' />
-            GitHub
-          </Link>
-        </Button>
+  <div className='flex items-center gap-4 py-4'>
+    <div className='w-16 h-16 flex items-center justify-center rounded border border-gray-800 bg-gray-900'>
+      <Package className='h-8 w-8 text-gray-400' />
+    </div>
+    <div>
+      <div className='flex items-center gap-2'>
+        <a href={url} className='font-medium text-base hover:underline'>
+          {title}
+        </a>
+        <span className='text-xs text-gray-500'>v{version}</span>
+      </div>
+      <p className='text-gray-400 text-sm'>{description}</p>
+      <div className='flex gap-4 mt-1'>
+        <a href={url} className='text-gray-400 text-xs hover:underline'>
+          NPM
+        </a>
+        <a href={githubUrl} className='text-gray-400 text-xs hover:underline flex items-center gap-1'>
+          <Github className='h-3 w-3' /> GitHub
+        </a>
       </div>
     </div>
-  </Card>
+  </div>
 );
 
 // @ts-expect-error

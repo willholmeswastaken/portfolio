@@ -1,8 +1,5 @@
 import Link from 'next/link';
-import { Card, CardHeader, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
-import { ChevronRight } from 'lucide-react';
-import { Button } from './ui/button';
 
 type FeaturedBlogPostProps = {
   title: string;
@@ -13,25 +10,18 @@ type FeaturedBlogPostProps = {
   coverImage?: string;
 };
 
-const FeaturedBlogPost = ({ title, description, url, likes, views, coverImage }: FeaturedBlogPostProps) => (
-  <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300 space-y-2'>
-    <CardHeader className='pb-1 space-y-4'>
-      {coverImage && <Image src={coverImage} alt={title} width={400} height={175} className='w-full h-[175px] object-cover rounded-lg' />}
-      <CardTitle className='text-2xl'>{title}</CardTitle>
-      {/* Come back to this */}
-      {/* <CardDescription>May 1, 2023 • 5 min read</CardDescription> */}
-    </CardHeader>
-    <CardContent className='flex-grow'>
-      <p className='text-gray-500 dark:text-gray-400'>{description}</p>
-    </CardContent>
-    <div className='p-6 pt-0'>
-      <Button className='w-full group-hover:translate-x-1 transition-transform' variant='ghost' asChild>
-        <Link href={url}>
-          Read More <ChevronRight className='ml-2 h-4 w-4' />
-        </Link>
-      </Button>
+const FeaturedBlogPost = ({ title, description, url, coverImage }: FeaturedBlogPostProps) => (
+  <div className='flex items-center gap-4 py-4'>
+    {coverImage && (
+      <Image src={coverImage} alt={title} width={64} height={64} className='w-16 h-16 object-cover rounded border border-gray-800' />
+    )}
+    <div>
+      <a href={url} className='font-medium text-base hover:underline'>
+        {title}
+      </a>
+      <p className='text-gray-400 text-sm'>{description}</p>
     </div>
-  </Card>
+  </div>
 );
 
 export default FeaturedBlogPost;

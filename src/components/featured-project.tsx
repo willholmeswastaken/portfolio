@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card } from '@/components/ui/card';
 import { Github } from 'lucide-react';
-import { Button } from './ui/button';
 
 type FeaturedProjectProps = {
   name: string;
@@ -11,39 +9,32 @@ type FeaturedProjectProps = {
   githubUrl: string;
 };
 
-const FeatureProjectPost = ({ name, description, url, githubUrl }: FeaturedProjectProps) => (
-  <Card className='flex flex-col group hover:shadow-lg transition-shadow duration-300'>
-    <div className='relative aspect-[2/1]'>
-      <Image
-        src={`${
-          process.env.VERCEL_PROJECT_PRODUCTION_URL ? 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL : 'http://localhost:3000'
-        }/image?
-&url=${url}
-&dimension=1024x768`}
-        alt={`${name} application screenshot`}
-        fill
-        className='object-cover'
-      />
-      <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
-      <div className='absolute bottom-4 left-4 right-4'>
-        <h3 className='text-2xl font-bold text-white mb-2'>{name}</h3>
-        <p className='text-gray-200'>{description}</p>
+const FeaturedProject = ({ name, description, url, githubUrl }: FeaturedProjectProps) => (
+  <div className='flex items-center gap-4 py-4'>
+    <Image
+      src={`${
+        process.env.VERCEL_PROJECT_PRODUCTION_URL ? 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL : 'http://localhost:3000'
+      }/image?&url=${url}&dimension=1024x768`}
+      alt={name}
+      width={64}
+      height={64}
+      className='w-16 h-16 object-cover rounded border border-gray-800'
+    />
+    <div>
+      <a href={url} className='font-medium text-base hover:underline'>
+        {name}
+      </a>
+      <p className='text-gray-400 text-sm'>{description}</p>
+      <div className='flex gap-4 mt-1'>
+        <a href={url} className='text-gray-400 text-xs hover:underline'>
+          View Project
+        </a>
+        <a href={githubUrl} className='text-gray-400 text-xs hover:underline flex items-center gap-1'>
+          <Github className='h-3 w-3' /> GitHub
+        </a>
       </div>
     </div>
-    <div className='p-6 mt-auto'>
-      <div className='flex justify-between items-center'>
-        <Button asChild>
-          <Link href={url}>View Project</Link>
-        </Button>
-        <Button variant='outline' asChild>
-          <Link href={githubUrl}>
-            <Github className='mr-2 h-4 w-4' />
-            GitHub
-          </Link>
-        </Button>
-      </div>
-    </div>
-  </Card>
+  </div>
 );
 
-export default FeatureProjectPost;
+export default FeaturedProject;
