@@ -8,12 +8,13 @@ type FeaturedBlogPostProps = {
   likes: number;
   views?: number;
   coverImage?: string;
+  priority?: boolean;
 };
 
-const FeaturedBlogPost = ({ title, description, url, coverImage }: FeaturedBlogPostProps) => (
+const FeaturedBlogPost = ({ title, description, url, coverImage, priority }: FeaturedBlogPostProps) => (
   <div className='flex items-center gap-4 py-4'>
     {coverImage && (
-      <Image src={coverImage} alt={title} width={64} height={64} className='w-16 h-16 object-cover rounded border border-gray-800' />
+      <Image src={coverImage} alt={title} width={64} height={64} priority={priority} className='w-16 h-16 object-cover rounded border border-gray-800' />
     )}
     <div>
       <a href={url} className='font-medium text-base hover:underline'>
