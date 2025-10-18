@@ -19,6 +19,7 @@ export default async function HomePage() {
               alt='Photo of Will on top of Snowdon'
               width={72}
               height={72}
+              priority
               className='mx-auto rounded-full mb-4 border border-gray-800'
             />
             <h1 className='text-2xl font-bold mb-2'>Will Holmes</h1>
@@ -31,7 +32,7 @@ export default async function HomePage() {
           <section className='mb-12'>
             <h2 className='text-lg font-semibold mb-4'>Blog Posts</h2>
             <div className='divide-y divide-gray-800'>
-              {blogPosts.map(post => (
+              {blogPosts.map((post, index) => (
                 <FeaturedBlogPost
                   key={post.id}
                   title={post.title}
@@ -40,6 +41,7 @@ export default async function HomePage() {
                   likes={post.likes}
                   views={post.views}
                   coverImage={post.coverImage}
+                  priority={index === 0}
                 />
               ))}
             </div>
@@ -76,7 +78,7 @@ export default async function HomePage() {
           </section>
 
           <footer className='py-8 text-center text-gray-600 text-sm'>
-            © {new Date().getFullYear()} Will Holmes ·
+            © 2025 Will Holmes ·
             <a href='https://github.com/willholmeswastaken' className='ml-2 hover:underline'>
               GitHub
             </a>

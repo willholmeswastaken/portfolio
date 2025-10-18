@@ -63,7 +63,7 @@ export class HomeData {
   ];
 
   async getBlogPosts(): Promise<Array<BlogPostViewModel>> {
-    const blogPostsResponse = await fetch('https://dev.to/api/articles?username=willholmes', { next: { revalidate: 3600 } });
+    const blogPostsResponse = await fetch('https://dev.to/api/articles?username=willholmes');
     const blogPostsParsed: Array<BlogPost> = await blogPostsResponse.json();
     const blogPosts: Array<BlogPostViewModel> = blogPostsParsed.slice(0, 3).map(x => ({
       id: x.id,
@@ -77,9 +77,7 @@ export class HomeData {
   }
 
   async getPackages(): Promise<Array<PackageViewModel>> {
-    const packagesResponse = await fetch('https://registry.npmjs.org/-/v1/search?text=maintainer:devwillholmes', {
-      next: { revalidate: 3600 },
-    });
+    const packagesResponse = await fetch('https://registry.npmjs.org/-/v1/search?text=maintainer:devwillholmes');
     const packagesParsed: PackagesResponse = await packagesResponse.json();
     const packages: Array<PackageViewModel> = packagesParsed.objects.map(x => ({
       url: x.package.links.npm,
@@ -99,7 +97,6 @@ export class HomeData {
         headers: {
           'Content-Type': 'application/json',
         },
-        next: { revalidate: 3600 },
       });
       const postsParsed = (await posts.json()) as UserResponse;
       return postsParsed.data.publication.posts.edges.map(

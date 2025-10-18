@@ -8,6 +8,10 @@ export const metadata = {
   description: 'A full stack developer based in the UK with a passion for all things software dev.',
 };
 
+export const viewport = {
+  themeColor: '#000000',
+};
+
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
