@@ -2,6 +2,7 @@ import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
   title: 'Will Holmes - Developer',
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute='class' defaultTheme='dark' enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
