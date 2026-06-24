@@ -30,6 +30,16 @@ const config = {
         pathname: '**',
       },
       {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.vercel.app',
+        pathname: '**',
+      },
+      {
         protocol: 'https',
         hostname: 'willholmes.dev',
         pathname: '**',

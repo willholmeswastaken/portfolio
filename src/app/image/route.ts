@@ -1,4 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { projectUrls } from '@/data';
+
+function normalizeUrl(url: string): string {
+  return url.replace(/\/$/, '');
+}
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -9,7 +14,15 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
   }
 
+  if (!projectUrls.has(normalizeUrl(url))) {
+    return NextResponse.json({ error: 'URL not allowed' }, { status: 403 });
+  }
+
   const apiKey = process.env.SCREENSHOT_API_KEY;
+  if (!apiKey) {
+    return NextResponse.json({ error: 'Screenshot service unavailable' }, { status: 503 });
+  }
+
   const apiUrl = `https://api.screenshotmachine.com?key=${apiKey}&url=${encodeURIComponent(url)}&dimension=${dimension}`;
 
   try {

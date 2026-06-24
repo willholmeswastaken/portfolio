@@ -1,89 +1,35 @@
-import FeaturedBlogPost from '@/components/featured-blog-post';
-import FeaturedPackage from '@/components/featured-package';
-import FeaturedProject from '@/components/featured-project';
-import { HomeData } from '@/HomeData';
-import { Github } from 'lucide-react';
-import Image from 'next/image';
+import { Suspense } from 'react';
+import SiteNav from '@/components/site-nav';
+import SiteFooter from '@/components/site-footer';
+import WorkSection from '@/components/sections/work-section';
+import { WritingSection, WritingSkeleton } from '@/components/sections/writing-section';
+import { PackagesSection, PackagesSkeleton } from '@/components/sections/packages-section';
 
-export default async function HomePage() {
-  const { getBlogPosts, getPackages, projects, getHashnodePosts } = new HomeData();
-  const [devToBlogPosts, packages, hashnodePosts] = await Promise.all([getBlogPosts(), getPackages(), getHashnodePosts()]);
-  const blogPosts = hashnodePosts.concat(devToBlogPosts).filter(post => post.coverImage);
+export default function HomePage() {
   return (
-    <div className='min-h-screen bg-black text-white'>
-      <main className='flex-1 flex flex-col items-center justify-center'>
-        <div className='w-full max-w-2xl mx-auto px-4'>
-          <header className='pt-16 pb-8 text-center'>
-            <Image
-              src='https://avatars.githubusercontent.com/u/13040458'
-              alt='Photo of Will on top of Snowdon'
-              width={72}
-              height={72}
-              priority
-              className='mx-auto rounded-full mb-4 border border-gray-800'
-            />
-            <h1 className='text-2xl font-bold mb-2'>Will Holmes</h1>
-            <p className='text-gray-400 mb-2'>A software engineer with a passion for building things and sharing knowledge.</p>
-            <a href='https://github.com/willholmeswastaken' className='ml-2 hover:underline mx-auto w-full flex justify-center'>
-              <Github className='h-4 w-4 ' />
-            </a>
-          </header>
+    <div className='relative min-h-screen bg-[hsl(var(--bg))] text-white'>
+      <SiteNav />
 
-          <section className='mb-12'>
-            <h2 className='text-lg font-semibold mb-4'>Blog Posts</h2>
-            <div className='divide-y divide-gray-800'>
-              {blogPosts.map((post, index) => (
-                <FeaturedBlogPost
-                  key={post.id}
-                  title={post.title}
-                  description={post.description}
-                  url={post.url}
-                  likes={post.likes}
-                  views={post.views}
-                  coverImage={post.coverImage}
-                  priority={index === 0}
-                />
-              ))}
-            </div>
-            <div className='mt-6 text-center'>
-              <a href='https://willholmes.hashnode.dev' className='text-gray-400 text-sm hover:underline'>
-                View All Posts
-              </a>
-            </div>
-          </section>
+      <main>
+        <section id='writing' className='scroll-mt-20 pb-20 pt-24 sm:pb-28 sm:pt-28'>
+          <div id='top' className='page-container'>
+            <Suspense fallback={<WritingSkeleton />}>
+              <WritingSection />
+            </Suspense>
+          </div>
+        </section>
 
-          <section className='mb-12'>
-            <h2 className='text-lg font-semibold mb-4'>Projects & Packages</h2>
-            <div className='divide-y divide-gray-800'>
-              {packages.map(pkg => (
-                <FeaturedPackage
-                  key={pkg.title}
-                  title={pkg.title}
-                  description={pkg.description}
-                  url={pkg.url}
-                  githubUrl={pkg.githubUrl}
-                  version={pkg.version}
-                />
-              ))}
-              {projects.map(project => (
-                <FeaturedProject
-                  key={project.name}
-                  name={project.name}
-                  description={project.description}
-                  url={project.url}
-                  githubUrl={project.githubUrl}
-                />
-              ))}
-            </div>
-          </section>
+        <WorkSection />
 
-          <footer className='py-8 text-center text-gray-600 text-sm'>
-            © 2025 Will Holmes ·
-            <a href='https://github.com/willholmeswastaken' className='ml-2 hover:underline'>
-              GitHub
-            </a>
-          </footer>
-        </div>
+        <section id='packages' className='section-pad scroll-mt-20 border-t border-white/[0.04]'>
+          <div className='page-container'>
+            <Suspense fallback={<PackagesSkeleton />}>
+              <PackagesSection />
+            </Suspense>
+          </div>
+        </section>
+
+        <SiteFooter />
       </main>
     </div>
   );
