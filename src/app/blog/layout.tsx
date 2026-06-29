@@ -1,13 +1,7 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import SiteNav from '@/components/site-nav';
 import SiteFooter from '@/components/site-footer';
-
-export const metadata: Metadata = {
-  title: 'Writing — Will Holmes',
-  description: 'Blog posts on software, side projects, and whatever else is on my mind.',
-};
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (

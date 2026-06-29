@@ -2,10 +2,24 @@ import type { Metadata } from 'next';
 import BlogPostRow from '@/components/blog-post-row';
 import { SectionHeading } from '@/components/section-heading';
 import { getAllMdxPosts, mdxPostToViewModel } from '@/lib/mdx-posts';
+import { SITE_NAME, SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Writing — Will Holmes',
+  title: `Writing — ${SITE_NAME}`,
   description: 'Blog posts on software, side projects, and whatever else is on my mind.',
+  alternates: { canonical: `${SITE_URL}/blog` },
+  openGraph: {
+    title: `Writing — ${SITE_NAME}`,
+    description: 'Blog posts on software, side projects, and whatever else is on my mind.',
+    url: `${SITE_URL}/blog`,
+    type: 'website',
+    siteName: SITE_NAME,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Writing — ${SITE_NAME}`,
+    description: 'Blog posts on software, side projects, and whatever else is on my mind.',
+  },
 };
 
 export default function BlogIndexPage() {

@@ -3,21 +3,23 @@ import { cn } from '@/lib/utils';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SITE_NAME, SITE_URL } from '@/lib/site';
 
 export const metadata = {
-  metadataBase: new URL('https://willholmes.dev'),
-  title: 'Will Holmes — Software Engineer',
+  metadataBase: new URL(SITE_URL),
+  title: `${SITE_NAME} — Software Engineer`,
   description: 'A full-stack software engineer based in the UK. Writing, open-source packages, and side projects.',
+  alternates: { canonical: SITE_URL },
   openGraph: {
-    title: 'Will Holmes — Software Engineer',
+    title: `${SITE_NAME} — Software Engineer`,
     description: 'Writing, open-source packages, and side projects from the UK.',
     type: 'website',
-    url: 'https://willholmes.dev',
-    siteName: 'Will Holmes',
+    url: SITE_URL,
+    siteName: SITE_NAME,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Will Holmes — Software Engineer',
+    title: `${SITE_NAME} — Software Engineer`,
     description: 'Writing, open-source packages, and side projects from the UK.',
   },
 };
