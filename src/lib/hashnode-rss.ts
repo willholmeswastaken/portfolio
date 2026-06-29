@@ -3,7 +3,6 @@ type HashnodeRssItem = {
   description: string;
   link: string;
   pubDate?: string;
-  coverImage?: string;
 };
 
 function getCdataContent(xml: string, tag: string): string {
@@ -18,11 +17,6 @@ function getTagContent(xml: string, tag: string): string {
   return match?.[1]?.trim() ?? '';
 }
 
-function getEnclosureUrl(itemXml: string): string | undefined {
-  const match = itemXml.match(/<enclosure url="([^"]+)"/);
-  return match?.[1];
-}
-
 export function parseHashnodeRss(xml: string): HashnodeRssItem[] {
   const items = xml.match(/<item\b[\s\S]*?<\/item>/g) ?? [];
 
@@ -31,6 +25,5 @@ export function parseHashnodeRss(xml: string): HashnodeRssItem[] {
     description: getCdataContent(item, 'description'),
     link: getTagContent(item, 'link'),
     pubDate: getTagContent(item, 'pubDate'),
-    coverImage: getEnclosureUrl(item),
   }));
 }

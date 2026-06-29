@@ -5,7 +5,6 @@ export type BlogPostViewModel = {
   likes: number;
   url: string;
   views?: number;
-  coverImage?: string;
   publishedAt?: string;
   source?: 'hashnode' | 'devto';
 };

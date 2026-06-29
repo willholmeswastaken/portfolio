@@ -21,7 +21,7 @@ const sampleFeed = `<?xml version="1.0" encoding="UTF-8"?>
 </rss>`;
 
 describe('parseHashnodeRss', () => {
-  it('parses titles, links, dates, and cover images', () => {
+  it('parses titles, links, and dates', () => {
     const items = parseHashnodeRss(sampleFeed);
 
     expect(items).toHaveLength(2);
@@ -30,9 +30,13 @@ describe('parseHashnodeRss', () => {
       description: 'A short summary.',
       link: 'https://willholmes.hashnode.dev/first-post',
       pubDate: 'Tue, 28 May 2024 17:40:46 GMT',
-      coverImage: 'https://cdn.hashnode.com/image-one.jpeg',
     });
-    expect(items[1].coverImage).toBeUndefined();
+    expect(items[1]).toEqual({
+      title: 'Second post',
+      description: 'Another summary.',
+      link: 'https://willholmes.hashnode.dev/second-post',
+      pubDate: 'Mon, 01 Jan 2024 10:00:00 GMT',
+    });
   });
 
   it('returns an empty array for invalid input', () => {

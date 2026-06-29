@@ -82,12 +82,6 @@ export const projects: Array<ProjectViewModel> = [
 const POST_LIMIT = 3;
 const POST_FETCH_LIMIT = 6;
 
-function normalizeUrl(url: string): string {
-  return url.replace(/\/$/, '');
-}
-
-export const projectUrls = new Set(projects.map(project => normalizeUrl(project.url)));
-
 export const getDevToPosts = cache(async (): Promise<Array<BlogPostViewModel>> => {
   try {
     const res = await fetch('https://dev.to/api/articles?username=willholmes', {
@@ -104,7 +98,6 @@ export const getDevToPosts = cache(async (): Promise<Array<BlogPostViewModel>> =
       description: x.description,
       url: x.url,
       likes: x.positive_reactions_count,
-      coverImage: x.cover_image,
       publishedAt: String(x.published_at),
       source: 'devto' as const,
     }));
@@ -156,7 +149,6 @@ export const getHashnodePosts = cache(async (): Promise<Array<BlogPostViewModel>
         description: item.description,
         url: item.link,
         likes: 0,
-        coverImage: item.coverImage,
         publishedAt: item.pubDate,
         source: 'hashnode' as const,
       };
@@ -177,7 +169,6 @@ export const getAllBlogPosts = cache(async () => {
   const [devto, hashnode] = await Promise.all([getDevToPosts(), getHashnodePosts()]);
   const merged = hashnode
     .concat(devto)
-    .filter(p => p.coverImage)
     .sort((a, b) => postTimestamp(b) - postTimestamp(a));
 
   const seen = new Set<string>();
