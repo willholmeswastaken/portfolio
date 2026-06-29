@@ -58,7 +58,7 @@ export function SiteNav() {
       )}
     >
       <div className='page-container flex h-14 items-center justify-between sm:h-16'>
-        <a href='#top' className='flex items-center gap-2.5'>
+        <a href='/#top' className='flex items-center gap-2.5'>
           <span className='relative block h-7 w-7 overflow-hidden rounded-full ring-1 ring-white/10'>
             <Image
               src='https://avatars.githubusercontent.com/u/13040458'
@@ -77,7 +77,7 @@ export function SiteNav() {
             return (
               <a
                 key={id}
-                href={`#${id}`}
+                href={`/#${id}`}
                 aria-current={isActive ? 'true' : undefined}
                 className={cn(
                   'rounded-full px-2.5 py-1.5 text-xs transition-colors duration-200 sm:px-3.5 sm:text-sm',

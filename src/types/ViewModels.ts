@@ -6,7 +6,8 @@ export type BlogPostViewModel = {
   url: string;
   views?: number;
   publishedAt?: string;
-  source?: 'hashnode' | 'devto';
+  slug?: string;
+  source?: 'hashnode' | 'devto' | 'local';
 };
 
 export type PackageViewModel = {

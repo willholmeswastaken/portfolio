@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import BlogPostRow from '@/components/blog-post-row';
 import { getAllBlogPosts } from '@/data';
@@ -25,15 +26,10 @@ export async function WritingSection() {
         <p className='text-sm text-muted-foreground'>No posts to show right now.</p>
       )}
 
-      <a
-        href='https://willholmes.hashnode.dev'
-        target='_blank'
-        rel='noreferrer'
-        className='link-accent mt-8 sm:mt-12'
-      >
+      <Link href='/blog' className='link-accent mt-8 sm:mt-12'>
         All posts
         <ArrowUpRight className='h-3.5 w-3.5' />
-      </a>
+      </Link>
     </>
   );
 }

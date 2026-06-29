@@ -3,6 +3,7 @@ import type { ProjectViewModel, BlogPostViewModel, PackageViewModel } from './ty
 import type { BlogPost } from './types/external/dev-to/BlogPost';
 import { parseHashnodeRss } from './lib/hashnode-rss';
 import { isRssFeed, sortPostsByDate } from './lib/blog-posts';
+import { getLocalBlogPosts } from './lib/mdx-posts';
 import type { PackagesResponse } from './types/external/npms/Packages';
 
 const POST_LIMIT = 3;
@@ -188,6 +189,7 @@ function dedupePosts(posts: Array<BlogPostViewModel>): Array<BlogPostViewModel> 
 }
 
 export const getAllBlogPosts = cache(async () => {
+  const local = getLocalBlogPosts();
   const [devto, hashnode] = await Promise.all([getDevToPosts(), getHashnodePosts()]);
-  return dedupePosts(sortPostsByDate([...hashnode, ...devto])).slice(0, POST_LIMIT);
+  return dedupePosts(sortPostsByDate([...local, ...hashnode, ...devto])).slice(0, POST_LIMIT);
 });
