@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Github } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -14,6 +15,8 @@ const NAV_LINKS: Array<{ id: SectionId; label: string }> = [
 ];
 
 export function SiteNav() {
+  const pathname = usePathname();
+  const isBlog = pathname.startsWith('/blog');
   const [activeSection, setActiveSection] = useState<SectionId | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -58,7 +61,7 @@ export function SiteNav() {
       )}
     >
       <div className='page-container flex h-14 items-center justify-between sm:h-16'>
-        <a href='#top' className='flex items-center gap-2.5'>
+        <a href='/#top' className='flex items-center gap-2.5'>
           <span className='relative block h-7 w-7 overflow-hidden rounded-full ring-1 ring-white/10'>
             <Image
               src='https://avatars.githubusercontent.com/u/13040458'
@@ -73,11 +76,11 @@ export function SiteNav() {
 
         <nav className='absolute left-1/2 flex -translate-x-1/2 items-center gap-0.5 sm:gap-1'>
           {NAV_LINKS.map(({ id, label }) => {
-            const isActive = activeSection === id;
+            const isActive = (isBlog && id === 'writing') || activeSection === id;
             return (
               <a
                 key={id}
-                href={`#${id}`}
+                href={`/#${id}`}
                 aria-current={isActive ? 'true' : undefined}
                 className={cn(
                   'rounded-full px-2.5 py-1.5 text-xs transition-colors duration-200 sm:px-3.5 sm:text-sm',

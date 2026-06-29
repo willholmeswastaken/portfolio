@@ -9,10 +9,16 @@ export function formatPostDate(date?: string): string {
   });
 }
 
-export function formatPostMeta(date?: string, source?: 'hashnode' | 'devto'): string {
+export function formatPostMeta(date?: string, source?: 'hashnode' | 'devto' | 'local'): string {
   const formatted = formatPostDate(date);
   const label =
-    source === 'hashnode' ? 'Hashnode' : source === 'devto' ? 'dev.to' : '';
+    source === 'hashnode'
+      ? 'Hashnode'
+      : source === 'devto'
+        ? 'dev.to'
+        : source === 'local'
+          ? 'Blog'
+          : '';
   if (formatted && label) return `${formatted} · ${label}`;
   return formatted || label;
 }
