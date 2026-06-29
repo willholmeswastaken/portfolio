@@ -1,5 +1,4 @@
 import { ArrowUpRight } from 'lucide-react';
-import SectionHeading from '@/components/section-heading';
 import BlogPostRow from '@/components/blog-post-row';
 import { getAllBlogPosts } from '@/data';
 
@@ -8,8 +7,6 @@ export async function WritingSection() {
 
   return (
     <>
-      <SectionHeading title='Recent posts' description='Published on Hashnode and dev.to.' />
-
       {blogPosts.length > 0 ? (
         <div className='divide-y divide-white/[0.06]'>
           {blogPosts.map((post, index) => (
@@ -43,20 +40,17 @@ export async function WritingSection() {
 
 export function WritingSkeleton() {
   return (
-    <>
-      <SectionHeading title='Recent posts' description='Published on Hashnode and dev.to.' />
-      <div className='divide-y divide-white/[0.06]'>
-        {Array.from({ length: 3 }).map((_, i) => (
-          <div key={i} className='flex flex-col gap-2 px-4 py-6 sm:py-8'>
-            <div className='h-3 w-32 animate-pulse rounded bg-white/5' />
-            <div
-              className={`animate-pulse rounded bg-white/5 ${i === 0 ? 'h-7 w-3/4' : 'h-5 w-full'}`}
-            />
-            <div className='h-10 w-full animate-pulse rounded bg-white/5' />
-          </div>
-        ))}
-      </div>
-    </>
+    <div className='divide-y divide-white/[0.06]'>
+      {Array.from({ length: 3 }).map((_, i) => (
+        <div key={i} className='flex flex-col gap-2 px-4 py-6 sm:py-8'>
+          <div className='h-3 w-32 animate-pulse rounded bg-white/5' />
+          <div
+            className={`animate-pulse rounded bg-white/5 ${i === 0 ? 'h-7 w-3/4' : 'h-5 w-full'}`}
+          />
+          <div className='h-10 w-full animate-pulse rounded bg-white/5' />
+        </div>
+      ))}
+    </div>
   );
 }
 
