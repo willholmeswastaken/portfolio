@@ -14,41 +14,6 @@ const config = {
         hostname: 'avatars.githubusercontent.com',
         pathname: '**',
       },
-      {
-        protocol: 'https',
-        hostname: 'cdn.hashnode.com',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media.dev.to',
-        pathname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        pathname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.vercel.app',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'willholmes.dev',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media2.dev.to',
-        pathname: '**',
-      },
     ],
   },
 };

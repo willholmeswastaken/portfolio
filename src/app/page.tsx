@@ -11,7 +11,7 @@ export default function HomePage() {
       <SiteNav />
 
       <main>
-        <section id='writing' className='scroll-mt-20 pb-20 pt-24 sm:pb-28 sm:pt-28'>
+        <section id='writing' className='scroll-mt-20 pb-10 pt-24 sm:pb-28 sm:pt-28'>
           <div id='top' className='page-container'>
             <Suspense fallback={<WritingSkeleton />}>
               <WritingSection />

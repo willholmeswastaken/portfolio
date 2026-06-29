@@ -2,7 +2,17 @@ import { cache } from 'react';
 import type { ProjectViewModel, BlogPostViewModel, PackageViewModel } from './types/ViewModels';
 import type { BlogPost } from './types/external/dev-to/BlogPost';
 import { parseHashnodeRss } from './lib/hashnode-rss';
+import { isRssFeed, sortPostsByDate } from './lib/blog-posts';
 import type { PackagesResponse } from './types/external/npms/Packages';
+
+const POST_LIMIT = 3;
+const POST_FETCH_LIMIT = 12;
+const HASHNODE_RSS_URL = 'https://willholmes.hashnode.dev/rss.xml';
+
+const FEED_HEADERS = {
+  Accept: 'application/rss+xml, application/xml, text/xml, */*',
+  'User-Agent': 'WillHolmesPortfolio/1.0 (+https://willholmes.dev)',
+};
 
 export const projects: Array<ProjectViewModel> = [
   {
@@ -79,35 +89,28 @@ export const projects: Array<ProjectViewModel> = [
   },
 ];
 
-const POST_LIMIT = 3;
-const POST_FETCH_LIMIT = 6;
-
-function normalizeUrl(url: string): string {
-  return url.replace(/\/$/, '');
-}
-
-export const projectUrls = new Set(projects.map(project => normalizeUrl(project.url)));
-
 export const getDevToPosts = cache(async (): Promise<Array<BlogPostViewModel>> => {
   try {
-    const res = await fetch('https://dev.to/api/articles?username=willholmes', {
+    const res = await fetch('https://dev.to/api/articles?username=willholmes&per_page=30', {
       next: { revalidate: 3600 },
+      headers: FEED_HEADERS,
     });
     if (!res.ok) return [];
 
     const parsed: unknown = await res.json();
     if (!Array.isArray(parsed)) return [];
 
-    return (parsed as Array<BlogPost>).slice(0, POST_FETCH_LIMIT).map(x => ({
-      id: x.id,
-      title: x.title,
-      description: x.description,
-      url: x.url,
-      likes: x.positive_reactions_count,
-      coverImage: x.cover_image,
-      publishedAt: String(x.published_at),
-      source: 'devto' as const,
-    }));
+    return sortPostsByDate(
+      (parsed as Array<BlogPost>).map(x => ({
+        id: x.id,
+        title: x.title,
+        description: x.description,
+        url: x.url,
+        likes: x.positive_reactions_count,
+        publishedAt: String(x.published_at),
+        source: 'devto' as const,
+      })),
+    ).slice(0, POST_FETCH_LIMIT);
   } catch (e) {
     console.warn(e);
     return [];
@@ -141,12 +144,19 @@ export const getPackages = cache(async (): Promise<Array<PackageViewModel>> => {
 
 export const getHashnodePosts = cache(async (): Promise<Array<BlogPostViewModel>> => {
   try {
-    const res = await fetch('https://willholmes.hashnode.dev/rss.xml', {
+    const res = await fetch(HASHNODE_RSS_URL, {
       next: { revalidate: 3600 },
+      headers: FEED_HEADERS,
     });
     if (!res.ok) return [];
 
-    const items = parseHashnodeRss(await res.text()).slice(0, POST_FETCH_LIMIT);
+    const feed = await res.text();
+    if (!isRssFeed(feed)) {
+      console.warn('Hashnode RSS feed was not valid XML');
+      return [];
+    }
+
+    const items = parseHashnodeRss(feed).slice(0, POST_FETCH_LIMIT);
     return items.map(item => {
       const slug = item.link.split('/').pop() ?? item.link;
 
@@ -156,7 +166,6 @@ export const getHashnodePosts = cache(async (): Promise<Array<BlogPostViewModel>
         description: item.description,
         url: item.link,
         likes: 0,
-        coverImage: item.coverImage,
         publishedAt: item.pubDate,
         source: 'hashnode' as const,
       };
@@ -167,24 +176,18 @@ export const getHashnodePosts = cache(async (): Promise<Array<BlogPostViewModel>
   }
 });
 
-function postTimestamp(post: BlogPostViewModel): number {
-  if (!post.publishedAt) return 0;
-  const time = new Date(post.publishedAt).getTime();
-  return Number.isNaN(time) ? 0 : time;
+function dedupePosts(posts: Array<BlogPostViewModel>): Array<BlogPostViewModel> {
+  const seen = new Set<string>();
+
+  return posts.filter(post => {
+    const key = post.title.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 export const getAllBlogPosts = cache(async () => {
   const [devto, hashnode] = await Promise.all([getDevToPosts(), getHashnodePosts()]);
-  const merged = hashnode
-    .concat(devto)
-    .filter(p => p.coverImage)
-    .sort((a, b) => postTimestamp(b) - postTimestamp(a));
-
-  const seen = new Set<string>();
-  return merged.filter(p => {
-    const key = p.title.toLowerCase();
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  }).slice(0, POST_LIMIT);
+  return dedupePosts(sortPostsByDate([...hashnode, ...devto])).slice(0, POST_LIMIT);
 });

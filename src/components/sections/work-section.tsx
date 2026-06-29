@@ -4,7 +4,7 @@ import { projects } from '@/data';
 
 export function WorkSection() {
   return (
-    <section id='work' className='scroll-mt-20 border-t border-white/[0.04] pb-20 pt-12 sm:pb-28 sm:pt-14'>
+    <section id='work' className='scroll-mt-20 border-t border-white/[0.04] pb-20 pt-8 sm:pb-28 sm:pt-14'>
       <div className='page-container'>
         <SectionHeading
           label='Work'

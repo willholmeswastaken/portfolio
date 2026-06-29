@@ -110,10 +110,6 @@
     @apply border-white/[0.1] bg-[hsl(var(--surface))];
   }
 
-  .image-well {
-    background-color: #ececec;
-  }
-
   .link-quiet {
     @apply text-muted-foreground transition-colors duration-200 hover:text-white;
   }
