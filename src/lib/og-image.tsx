@@ -68,6 +68,32 @@ export function createSiteOgImage() {
   );
 }
 
+export function createBlogIndexOgImage() {
+  return new ImageResponse(
+    (
+      <div style={rootStyle}>
+        <OgAuthorHeader />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20, flex: 1, justifyContent: 'center' }}>
+          <div
+            style={{
+              fontSize: 56,
+              fontWeight: 600,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.15,
+            }}
+          >
+            Writing
+          </div>
+          <div style={{ fontSize: 28, color: 'rgba(255,255,255,0.5)', lineHeight: 1.45, maxWidth: 900 }}>
+            Blog posts on software, side projects, and whatever else is on my mind.
+          </div>
+        </div>
+      </div>
+    ),
+    ogSize,
+  );
+}
+
 export function createPostOgImage({
   title,
   description,

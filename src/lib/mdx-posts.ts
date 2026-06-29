@@ -3,9 +3,9 @@ import path from 'path';
 import matter from 'gray-matter';
 import { cache } from 'react';
 import type { BlogPostViewModel } from '@/types/ViewModels';
-import { sortPostsByDate } from '@/lib/blog-posts';
 
 const BLOG_DIR = path.join(process.cwd(), 'content/blog');
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export type MdxPostFrontmatter = {
   title: string;
@@ -18,9 +18,24 @@ export type MdxPost = MdxPostFrontmatter & {
   content: string;
 };
 
+export function isValidSlug(slug: string): boolean {
+  return SLUG_PATTERN.test(slug);
+}
+
+function resolvePostPath(slug: string): string | null {
+  if (!isValidSlug(slug)) return null;
+
+  const filePath = path.resolve(BLOG_DIR, `${slug}.mdx`);
+  const blogDir = path.resolve(BLOG_DIR);
+
+  if (!filePath.startsWith(`${blogDir}${path.sep}`)) return null;
+
+  return filePath;
+}
+
 function readMdxFile(slug: string): MdxPost | null {
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
+  const filePath = resolvePostPath(slug);
+  if (!filePath || !fs.existsSync(filePath)) return null;
 
   const raw = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(raw);
@@ -45,7 +60,8 @@ export function getAllPostSlugs(): Array<string> {
   return fs
     .readdirSync(BLOG_DIR)
     .filter(file => file.endsWith('.mdx'))
-    .map(file => file.replace(/\.mdx$/, ''));
+    .map(file => file.replace(/\.mdx$/, ''))
+    .filter(isValidSlug);
 }
 
 export const getAllMdxPosts = cache((): Array<MdxPost> => {
@@ -73,5 +89,5 @@ export function mdxPostToViewModel(post: MdxPost): BlogPostViewModel {
 }
 
 export const getLocalBlogPosts = cache((): Array<BlogPostViewModel> => {
-  return sortPostsByDate(getAllMdxPosts().map(mdxPostToViewModel));
+  return getAllMdxPosts().map(mdxPostToViewModel);
 });

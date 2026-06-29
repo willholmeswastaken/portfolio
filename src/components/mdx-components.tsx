@@ -17,7 +17,7 @@ export const mdxComponents: MDXComponents = {
       <a
         href={href}
         target='_blank'
-        rel='noreferrer'
+        rel='noopener noreferrer'
         className='text-[hsl(var(--accent))] underline decoration-[hsl(var(--accent)/0.4)] underline-offset-2 transition-colors hover:decoration-[hsl(var(--accent))]'
         {...props}
       >

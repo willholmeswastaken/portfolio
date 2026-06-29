@@ -68,7 +68,7 @@ export function BlogPostRow({
   }
 
   return (
-    <a href={url} target='_blank' rel='noreferrer' className={rowClassName}>
+    <a href={url} target='_blank' rel='noopener noreferrer' className={rowClassName}>
       {content}
     </a>
   );

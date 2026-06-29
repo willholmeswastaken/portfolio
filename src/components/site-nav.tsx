@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Github } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -14,6 +15,8 @@ const NAV_LINKS: Array<{ id: SectionId; label: string }> = [
 ];
 
 export function SiteNav() {
+  const pathname = usePathname();
+  const isBlog = pathname.startsWith('/blog');
   const [activeSection, setActiveSection] = useState<SectionId | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -73,7 +76,7 @@ export function SiteNav() {
 
         <nav className='absolute left-1/2 flex -translate-x-1/2 items-center gap-0.5 sm:gap-1'>
           {NAV_LINKS.map(({ id, label }) => {
-            const isActive = activeSection === id;
+            const isActive = (isBlog && id === 'writing') || activeSection === id;
             return (
               <a
                 key={id}

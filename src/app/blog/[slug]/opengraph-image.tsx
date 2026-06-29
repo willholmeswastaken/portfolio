@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { formatPostDate } from '@/lib/blog-post';
 import { createPostOgImage, ogContentType, ogSize } from '@/lib/og-image';
 import { getMdxPostBySlug } from '@/lib/mdx-posts';
@@ -13,13 +14,7 @@ export default async function OgImage({ params }: OgImageProps) {
   const { slug } = await params;
   const post = getMdxPostBySlug(slug);
 
-  if (!post) {
-    return createPostOgImage({
-      title: 'Post not found',
-      description: 'Will Holmes',
-      date: '',
-    });
-  }
+  if (!post) notFound();
 
   return createPostOgImage({
     title: post.title,

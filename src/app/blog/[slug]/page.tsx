@@ -11,6 +11,8 @@ type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllPostSlugs().map(slug => ({ slug }));
 }
@@ -18,7 +20,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getMdxPostBySlug(slug);
-  if (!post) return {};
+  if (!post) notFound();
 
   const url = `${SITE_URL}/blog/${slug}`;
 
