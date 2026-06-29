@@ -1,3 +1,5 @@
+import { stripHtml } from './strip-html';
+
 type HashnodeRssItem = {
   title: string;
   description: string;
@@ -17,13 +19,25 @@ function getTagContent(xml: string, tag: string): string {
   return match?.[1]?.trim() ?? '';
 }
 
+function getItemDate(item: string): string | undefined {
+  const pubDate = getCdataContent(item, 'pubDate') || getTagContent(item, 'pubDate');
+  if (pubDate) return pubDate;
+
+  const dcDate = getCdataContent(item, 'dc:date') || getTagContent(item, 'dc:date');
+  return dcDate || undefined;
+}
+
 export function parseHashnodeRss(xml: string): HashnodeRssItem[] {
   const items = xml.match(/<item\b[\s\S]*?<\/item>/g) ?? [];
 
-  return items.map(item => ({
-    title: getCdataContent(item, 'title'),
-    description: getCdataContent(item, 'description'),
-    link: getTagContent(item, 'link'),
-    pubDate: getTagContent(item, 'pubDate'),
-  }));
+  return items.map(item => {
+    const description = stripHtml(getCdataContent(item, 'description'));
+
+    return {
+      title: getCdataContent(item, 'title'),
+      description,
+      link: getTagContent(item, 'link'),
+      pubDate: getItemDate(item),
+    };
+  });
 }
